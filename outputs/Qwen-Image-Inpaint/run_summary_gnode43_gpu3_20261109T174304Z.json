@@ -6,12 +6,12 @@
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 1693.0837514400482,
+  "gen_seconds": 5090.430634260178,
   "gpu": 3,
   "home_variant": "FLUX.1-Kontext-dev",
   "is_steal": true,
   "load_seconds": 25.8107008934021,
-  "mean_s_per_img": 16.930837514400483,
+  "mean_s_per_img": 16.96810211420059,
   "pid": 375476,
   "preprocess_sizes": [
     [
@@ -27,16 +27,31 @@
     },
     "i1/default": {
       "failed": 0,
-      "generated": 100,
-      "skipped": 149
+      "generated": 300,
+      "skipped": 150
     }
   },
   "sanity": {
-    "failures": [],
-    "n": 100,
-    "n_fail": 0,
-    "ns_psnr_min": 22.960569261737355,
-    "std_min": 11.130743786416385
+    "failures": [
+      {
+        "finite": true,
+        "ns_psnr": 13.978122166100352,
+        "ok": false,
+        "std": 91.84467083393385,
+        "task": "Qwen-Image-Inpaint/i1/default/WSRD/0032.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.625482959701813,
+        "ok": false,
+        "std": 59.62170489087045,
+        "task": "Qwen-Image-Inpaint/i1/default/WSRD/0053.png"
+      }
+    ],
+    "n": 300,
+    "n_fail": 2,
+    "ns_psnr_min": 13.625482959701813,
+    "std_min": 10.295527158358603
   },
   "start_utc": "2026-11-09T17:43:04.483198+00:00",
   "target_variant": "Qwen-Image-Inpaint",
