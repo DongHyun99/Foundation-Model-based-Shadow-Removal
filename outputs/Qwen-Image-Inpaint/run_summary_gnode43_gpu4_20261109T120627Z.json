@@ -6,12 +6,12 @@
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 14596.850898981094,
+  "gen_seconds": 17967.72149348259,
   "gpu": 4,
   "home_variant": "Qwen-Image-Inpaint",
   "is_steal": false,
   "load_seconds": 24.53704524040222,
-  "mean_s_per_img": 17.17276576350717,
+  "mean_s_per_img": 17.112115708078658,
   "pid": 153538,
   "preprocess_sizes": [
     [
@@ -22,15 +22,63 @@
   "runs": {
     "i0/default": {
       "failed": 0,
-      "generated": 850,
+      "generated": 1033,
+      "skipped": 0
+    },
+    "i1/default": {
+      "failed": 0,
+      "generated": 17,
       "skipped": 0
     }
   },
   "sanity": {
-    "failures": [],
-    "n": 850,
-    "n_fail": 0,
-    "ns_psnr_min": 17.624351615321324,
+    "failures": [
+      {
+        "finite": true,
+        "ns_psnr": 14.75045735494422,
+        "ok": false,
+        "std": 91.7348728955597,
+        "task": "Qwen-Image-Inpaint/i0/default/WSRD/0032.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.57244095502597,
+        "ok": false,
+        "std": 89.84914126054191,
+        "task": "Qwen-Image-Inpaint/i0/default/WSRD/0033.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 12.24868620028527,
+        "ok": false,
+        "std": 81.45479480177426,
+        "task": "Qwen-Image-Inpaint/i0/default/WSRD/0051.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.463940154643861,
+        "ok": false,
+        "std": 77.18062819134556,
+        "task": "Qwen-Image-Inpaint/i0/default/WSRD/0052.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.762900395716908,
+        "ok": false,
+        "std": 76.95736271212867,
+        "task": "Qwen-Image-Inpaint/i0/default/WSRD/0053.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.809474819939085,
+        "ok": false,
+        "std": 82.1824793435092,
+        "task": "Qwen-Image-Inpaint/i0/default/WSRD/0054.png"
+      }
+    ],
+    "n": 1050,
+    "n_fail": 6,
+    "ns_psnr_min": 12.24868620028527,
     "std_min": 9.67486203138898
   },
   "start_utc": "2026-11-09T12:06:27.014797+00:00",

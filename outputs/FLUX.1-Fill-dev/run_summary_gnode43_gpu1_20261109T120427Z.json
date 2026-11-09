@@ -6,12 +6,12 @@
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 14705.937543392181,
+  "gen_seconds": 18574.908046483994,
   "gpu": 1,
   "home_variant": "FLUX.1-Fill-dev",
   "is_steal": false,
   "load_seconds": 19.1799738407135,
-  "mean_s_per_img": 15.479934256202297,
+  "mean_s_per_img": 15.479090038736661,
   "pid": 150896,
   "preprocess_sizes": [
     [
@@ -22,7 +22,12 @@
   "runs": {
     "i2/default": {
       "failed": 0,
-      "generated": 950,
+      "generated": 1033,
+      "skipped": 0
+    },
+    "i3/default": {
+      "failed": 0,
+      "generated": 167,
       "skipped": 0
     }
   },
@@ -169,9 +174,9 @@
         "task": "FLUX.1-Fill-dev/i2/default/AISTD/105-9.png"
       }
     ],
-    "n": 950,
-    "n_fail": 557,
-    "ns_psnr_min": 4.434712731977408,
+    "n": 1200,
+    "n_fail": 755,
+    "ns_psnr_min": 3.7870846554289814,
     "std_min": 2.231710708013013
   },
   "start_utc": "2026-11-09T12:04:27.008550+00:00",

@@ -6,12 +6,12 @@
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 15155.728334903717,
+  "gen_seconds": 18576.502693414688,
   "gpu": 2,
   "home_variant": "FLUX.1-Kontext-dev",
   "is_steal": false,
   "load_seconds": 32.90839910507202,
-  "mean_s_per_img": 9.777889248324978,
+  "mean_s_per_img": 9.777106680744573,
   "pid": 152087,
   "preprocess_sizes": [
     [
@@ -27,7 +27,7 @@
     },
     "e2/default": {
       "failed": 0,
-      "generated": 517,
+      "generated": 867,
       "skipped": 0
     }
   },
@@ -174,8 +174,8 @@
         "task": "FLUX.1-Kontext-dev/e1/default/SRD/_MG_6113.jpg"
       }
     ],
-    "n": 1550,
-    "n_fail": 76,
+    "n": 1900,
+    "n_fail": 97,
     "ns_psnr_min": 8.662635834465629,
     "std_min": 0.8349866018509035
   },
