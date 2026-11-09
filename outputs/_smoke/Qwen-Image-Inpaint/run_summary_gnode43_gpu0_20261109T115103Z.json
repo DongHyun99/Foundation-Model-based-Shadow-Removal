@@ -1,0 +1,51 @@
+{
+  "end_utc": "2026-11-09T11:53:18.892019+00:00",
+  "exit_code": 3,
+  "filters": {
+    "limit_per_dataset": 4,
+    "prompts": [
+      "i1"
+    ],
+    "samplings": null
+  },
+  "gen_seconds": 102.1916892528534,
+  "gpu": 0,
+  "home_variant": "FLUX.1-Fill-dev",
+  "is_steal": true,
+  "load_seconds": 32.608927965164185,
+  "mean_s_per_img": 17.0319482088089,
+  "pid": 134660,
+  "preprocess_sizes": [
+    [
+      256,
+      256
+    ]
+  ],
+  "runs": {
+    "i1/default": {
+      "failed": 0,
+      "generated": 6,
+      "skipped": 6
+    }
+  },
+  "sanity": {
+    "failures": [],
+    "n": 6,
+    "n_fail": 0,
+    "ns_psnr_min": 21.416430771616252,
+    "std_min": 31.9783337374874
+  },
+  "start_utc": "2026-11-09T11:51:03.738599+00:00",
+  "target_variant": "Qwen-Image-Inpaint",
+  "vram": {
+    "interval_s": 0.05,
+    "nvml_baseline_mib": 450.7,
+    "nvml_peak_mib": 18348.8,
+    "nvml_total_mib": 24564.0,
+    "phase_peaks_mib": {
+      "generate": 18348.8,
+      "load": 17970.8
+    },
+    "torch_max_reserved_mib": 17632.0
+  }
+}

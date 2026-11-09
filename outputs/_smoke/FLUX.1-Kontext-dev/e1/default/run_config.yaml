@@ -1,0 +1,61 @@
+variant: FLUX.1-Kontext-dev
+hf_repo: black-forest-labs/FLUX.1-Kontext-dev
+hf_revision: 24e9dedc4ef646698dc8eb4e18ae2cec3c9fea0d
+pipeline_class: FluxKontextPipeline
+adapter: flux_kontext
+kind: edit
+quantization:
+  transformer:
+    method: layerwise_casting
+    storage_dtype: float8_e4m3fn
+    compute_dtype: bfloat16
+    skip_patterns: diffusers_default
+    param_counts_by_dtype:
+      float8_e4m3fn: 8653744128
+      bfloat16: 3247664192
+  text_encoder: bf16
+  text_encoder_2: bf16
+  vae: bf16
+text_encoder_handling: flux_stage1_deleted
+prompt_id: e1
+prompt_text: Remove the shadow.
+negative_prompt: null
+sampling_id: default
+sampling_params:
+  num_inference_steps: 28
+  guidance_scale: 2.5
+  max_sequence_length: 512
+  max_area: 65536
+  _auto_resize: false
+seed: 0
+generator_device: cpu
+resolution:
+- 256
+- 256
+resize_overrides:
+  _auto_resize: false
+  max_area: 65536
+mask_threshold: 127
+dataset_root: /home/dhhan/Project/ShadowRemoval/shadow-revision/dataset
+expected_counts:
+  AISTD: 2
+  SRD: 2
+  WSRD: 2
+versions:
+  python: 3.12.3
+  torch_cuda: '12.8'
+  cudnn: 91900
+  torch: 2.11.0+cu128
+  diffusers: 0.42.1
+  transformers: 5.22.2
+  accelerate: 1.15.0
+  bitsandbytes: 0.50.2
+  huggingface_hub: 2.4.0
+  numpy: 2.5.4
+  pillow: 13.0.0
+driver_version: 595.99.02
+gpu_name: NVIDIA RTX A5000
+repo_git_sha: 178022d53ba3c0c4c6f565d9b2be6fe8cde8d096
+repo_dirty: true
+host: gnode43
+created_at: '2026-11-09T11:46:41Z'

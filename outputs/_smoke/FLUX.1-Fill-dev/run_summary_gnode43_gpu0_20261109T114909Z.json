@@ -1,0 +1,82 @@
+{
+  "end_utc": "2026-11-09T11:50:59.483684+00:00",
+  "exit_code": 3,
+  "filters": {
+    "limit_per_dataset": 4,
+    "prompts": [
+      "i1"
+    ],
+    "samplings": null
+  },
+  "gen_seconds": 93.46840500831604,
+  "gpu": 0,
+  "home_variant": "FLUX.1-Fill-dev",
+  "is_steal": false,
+  "load_seconds": 16.344873428344727,
+  "mean_s_per_img": 15.578067501386007,
+  "pid": 132835,
+  "preprocess_sizes": [
+    [
+      256,
+      256
+    ]
+  ],
+  "runs": {
+    "i1/default": {
+      "failed": 0,
+      "generated": 6,
+      "skipped": 6
+    }
+  },
+  "sanity": {
+    "failures": [
+      {
+        "finite": true,
+        "ns_psnr": 12.390430646637265,
+        "ok": false,
+        "std": 21.207535792069468,
+        "task": "FLUX.1-Fill-dev/i1/default/AISTD/100-3.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.821546556418197,
+        "ok": false,
+        "std": 45.76596620755517,
+        "task": "FLUX.1-Fill-dev/i1/default/AISTD/100-4.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 12.210287994974266,
+        "ok": false,
+        "std": 20.566941497479117,
+        "task": "FLUX.1-Fill-dev/i1/default/SRD/IMG_1_5682.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.88215753866678,
+        "ok": false,
+        "std": 36.67120806347823,
+        "task": "FLUX.1-Fill-dev/i1/default/WSRD/0002.png"
+      }
+    ],
+    "n": 6,
+    "n_fail": 4,
+    "ns_psnr_min": 12.210287994974266,
+    "std_min": 20.566941497479117
+  },
+  "start_utc": "2026-11-09T11:49:09.344610+00:00",
+  "target_variant": "FLUX.1-Fill-dev",
+  "vram": {
+    "interval_s": 0.05,
+    "nvml_baseline_mib": 450.7,
+    "nvml_peak_mib": 15622.8,
+    "nvml_total_mib": 24564.0,
+    "phase_peaks_mib": {
+      "encode": 10158.8,
+      "generate": 15622.8,
+      "load": 9904.8,
+      "load_transformer": 15324.8
+    },
+    "torch_max_reserved_mib": 14906.0
+  }
+}

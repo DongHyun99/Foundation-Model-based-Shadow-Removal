@@ -1,0 +1,254 @@
+{
+  "first_exit_codes": {
+    "FLUX.1-Fill-dev": 3,
+    "FLUX.1-Kontext-dev": 3,
+    "Qwen-Image-Edit-2509": 3,
+    "Qwen-Image-Inpaint": 3
+  },
+  "first_seconds": 173.1,
+  "logs": "logs/smoke_20261109T114612Z",
+  "out_root": "outputs/_smoke",
+  "pass": true,
+  "resume": {
+    "exit_codes": {
+      "FLUX.1-Fill-dev": 3,
+      "FLUX.1-Kontext-dev": 3,
+      "Qwen-Image-Edit-2509": 3,
+      "Qwen-Image-Inpaint": 3
+    },
+    "n_outputs": 48,
+    "no_new_summaries": true,
+    "outputs_unchanged": true,
+    "pass": true,
+    "seconds": 1.8
+  },
+  "sanity_waivers": {
+    "FLUX.1-Fill-dev": "NS-PSNR <15 dB at 256x256 also with a full-bf16 transformer (reports/fill_resolution_probe.json): model behaviour at the spec resolution, not quantization"
+  },
+  "steal_drill": {
+    "existing_unchanged": true,
+    "generated": 6,
+    "is_steal": [
+      true
+    ],
+    "launcher_exit": 0,
+    "pass": true,
+    "seconds": 254.0,
+    "steal_summaries": [
+      "outputs/_smoke/Qwen-Image-Inpaint/run_summary_gnode43_gpu0_20261109T115103Z.json"
+    ],
+    "target": {
+      "cond_sizes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "load_seconds": 32.608927965164185,
+      "mean_s_per_img": 17.0319482088089,
+      "n_expected": 12,
+      "n_ok": 12,
+      "nvml_peak_mib": 18348.8,
+      "outside_equal": true,
+      "pass": true,
+      "sanity": {
+        "n": 6,
+        "n_fail": 0,
+        "ns_psnr_min": 21.416430771616252,
+        "std_min": 31.9783337374874
+      },
+      "sanity_waiver": null,
+      "size_ok": true,
+      "vram": {
+        "interval_s": 0.05,
+        "nvml_baseline_mib": 450.7,
+        "nvml_peak_mib": 18348.8,
+        "nvml_total_mib": 24564.0,
+        "phase_peaks_mib": {
+          "generate": 18348.8,
+          "load": 17970.8
+        },
+        "torch_max_reserved_mib": 17632.0
+      }
+    },
+    "thief": {
+      "cond_sizes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "load_seconds": 16.344873428344727,
+      "mean_s_per_img": 15.578067501386007,
+      "n_expected": 12,
+      "n_ok": 12,
+      "nvml_peak_mib": 15622.8,
+      "outside_equal": true,
+      "pass": true,
+      "sanity": {
+        "n": 6,
+        "n_fail": 4,
+        "ns_psnr_min": 12.210287994974266,
+        "std_min": 20.566941497479117
+      },
+      "sanity_waiver": "NS-PSNR <15 dB at 256x256 also with a full-bf16 transformer (reports/fill_resolution_probe.json): model behaviour at the spec resolution, not quantization",
+      "size_ok": true,
+      "vram": {
+        "interval_s": 0.05,
+        "nvml_baseline_mib": 450.7,
+        "nvml_peak_mib": 15622.8,
+        "nvml_total_mib": 24564.0,
+        "phase_peaks_mib": {
+          "encode": 10158.8,
+          "generate": 15622.8,
+          "load": 9904.8,
+          "load_transformer": 15324.8
+        },
+        "torch_max_reserved_mib": 14906.0
+      }
+    }
+  },
+  "variants": {
+    "FLUX.1-Fill-dev": {
+      "cond_sizes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "load_seconds": 21.779423713684082,
+      "mean_s_per_img": 15.583129644393921,
+      "n_expected": 6,
+      "n_ok": 6,
+      "nvml_peak_mib": 15622.8,
+      "outside_equal": true,
+      "pass": true,
+      "sanity": {
+        "n": 6,
+        "n_fail": 3,
+        "ns_psnr_min": 6.9198438276407295,
+        "std_min": 23.37008755412984
+      },
+      "sanity_waiver": "NS-PSNR <15 dB at 256x256 also with a full-bf16 transformer (reports/fill_resolution_probe.json): model behaviour at the spec resolution, not quantization",
+      "size_ok": true,
+      "vram": {
+        "interval_s": 0.05,
+        "nvml_baseline_mib": 450.7,
+        "nvml_peak_mib": 15622.8,
+        "nvml_total_mib": 24564.0,
+        "phase_peaks_mib": {
+          "encode": 10158.8,
+          "generate": 15622.8,
+          "load": 9984.8,
+          "load_transformer": 15284.8
+        },
+        "torch_max_reserved_mib": 14906.0
+      }
+    },
+    "FLUX.1-Kontext-dev": {
+      "cond_sizes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "load_seconds": 26.689696788787842,
+      "mean_s_per_img": 9.69373345375061,
+      "n_expected": 6,
+      "n_ok": 6,
+      "nvml_peak_mib": 15682.8,
+      "outside_equal": true,
+      "pass": true,
+      "sanity": {
+        "n": 6,
+        "n_fail": 0,
+        "ns_psnr_min": 19.353214260606876,
+        "std_min": 18.324881988268956
+      },
+      "sanity_waiver": null,
+      "size_ok": true,
+      "vram": {
+        "interval_s": 0.05,
+        "nvml_baseline_mib": 450.7,
+        "nvml_peak_mib": 15682.8,
+        "nvml_total_mib": 24564.0,
+        "phase_peaks_mib": {
+          "encode": 10158.8,
+          "generate": 15682.8,
+          "load": 9984.8,
+          "load_transformer": 15328.8
+        },
+        "torch_max_reserved_mib": 14966.0
+      }
+    },
+    "Qwen-Image-Edit-2509": {
+      "cond_sizes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "load_seconds": 28.60861825942993,
+      "mean_s_per_img": 20.842355728149414,
+      "n_expected": 6,
+      "n_ok": 6,
+      "nvml_peak_mib": 18312.8,
+      "outside_equal": true,
+      "pass": true,
+      "sanity": {
+        "n": 6,
+        "n_fail": 0,
+        "ns_psnr_min": 18.720484099709097,
+        "std_min": 31.829964017773314
+      },
+      "sanity_waiver": null,
+      "size_ok": true,
+      "vram": {
+        "interval_s": 0.05,
+        "nvml_baseline_mib": 450.7,
+        "nvml_peak_mib": 18312.8,
+        "nvml_total_mib": 24564.0,
+        "phase_peaks_mib": {
+          "generate": 18312.8,
+          "load": 17890.8
+        },
+        "torch_max_reserved_mib": 17596.0
+      }
+    },
+    "Qwen-Image-Inpaint": {
+      "cond_sizes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "load_seconds": 59.15591311454773,
+      "mean_s_per_img": 18.439061204592388,
+      "n_expected": 6,
+      "n_ok": 6,
+      "nvml_peak_mib": 18308.8,
+      "outside_equal": true,
+      "pass": true,
+      "sanity": {
+        "n": 6,
+        "n_fail": 0,
+        "ns_psnr_min": 20.44704931933895,
+        "std_min": 40.22712794008976
+      },
+      "sanity_waiver": null,
+      "size_ok": true,
+      "vram": {
+        "interval_s": 0.05,
+        "nvml_baseline_mib": 450.7,
+        "nvml_peak_mib": 18308.8,
+        "nvml_total_mib": 24564.0,
+        "phase_peaks_mib": {
+          "generate": 18308.8,
+          "load": 17930.8
+        },
+        "torch_max_reserved_mib": 17592.0
+      }
+    }
+  },
+  "vram_limit_mib": 23000
+}
