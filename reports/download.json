@@ -1,0 +1,22 @@
+{
+  "FLUX.1-Fill-dev": {
+    "hf_repo": "black-forest-labs/FLUX.1-Fill-dev",
+    "local_path": "/home/dhhan/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-Fill-dev/snapshots/358293da0354175698b67ec8299acf928313a78a",
+    "revision": "358293da0354175698b67ec8299acf928313a78a"
+  },
+  "FLUX.1-Kontext-dev": {
+    "hf_repo": "black-forest-labs/FLUX.1-Kontext-dev",
+    "local_path": "/home/dhhan/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-Kontext-dev/snapshots/24e9dedc4ef646698dc8eb4e18ae2cec3c9fea0d",
+    "revision": "24e9dedc4ef646698dc8eb4e18ae2cec3c9fea0d"
+  },
+  "Qwen-Image-Edit-2509": {
+    "hf_repo": "Qwen/Qwen-Image-Edit-2509",
+    "local_path": "/home/dhhan/.cache/huggingface/hub/models--Qwen--Qwen-Image-Edit-2509/snapshots/d3968ef930e841f4c73640fb8afa3b306a78167e",
+    "revision": "d3968ef930e841f4c73640fb8afa3b306a78167e"
+  },
+  "Qwen-Image-Inpaint": {
+    "hf_repo": "Qwen/Qwen-Image",
+    "local_path": "/home/dhhan/.cache/huggingface/hub/models--Qwen--Qwen-Image/snapshots/75e0b4be04f60ec59a75f475837eced720f823b6",
+    "revision": "75e0b4be04f60ec59a75f475837eced720f823b6"
+  }
+}

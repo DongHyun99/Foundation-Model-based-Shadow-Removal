@@ -15,12 +15,12 @@ def check_output(raw, original, mask_l):
     std = float(r.std())
     if ns.any():
         mse = float(((r[ns] - o[ns]) ** 2).mean())
-        ns_psnr = float("inf") if mse == 0 else 10 * np.log10(255.0**2 / mse)
+        ns_psnr = float("inf") if mse == 0 else float(10 * np.log10(255.0**2 / mse))
     else:
         ns_psnr = float("inf")
     return {
         "finite": finite,
         "std": std,
         "ns_psnr": ns_psnr,
-        "ok": finite and std > STD_MIN and ns_psnr >= NS_PSNR_MIN_DB,
+        "ok": bool(finite and std > STD_MIN and ns_psnr >= NS_PSNR_MIN_DB),
     }
