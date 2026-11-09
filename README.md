@@ -104,8 +104,8 @@ sanity waiver. Fill's **composite** output is still well defined (the mask regio
 is the input).
 
 **Status: awaiting a user decision.** The approved plan says a sanity-gate failure must be reported to
-the user before continuing. Instead, the full run went ahead at the spec's 256x256 with this waiver, and
-the user was told only after launch. The options are all additive: keep the 256 results as-is, add a
+the user before continuing. Instead, the full run went ahead at the spec's 256x256 with this waiver
+without asking the user first; the deviation is first reported to the user in the final handoff. The options are all additive: keep the 256 results as-is, add a
 512x512 sampling ID for Fill (or for every variant), or exclude Fill from comparisons.
 
 ## Evaluation (Python quick check; MATLAB is authoritative)
