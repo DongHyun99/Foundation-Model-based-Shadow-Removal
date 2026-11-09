@@ -139,7 +139,8 @@ def work(cfg, args):
     adapter = get_adapter_class(variant.adapter)(variant, device="cuda", on_phase=sampler.mark)
     adapter.load()
     runs = cfg.runs(args.variant, args.prompts, args.samplings)
-    adapter.prepare_prompts({r.prompt_id: r.prompt_text for r in runs})
+    # Always prepare the variant's full prompt set so load/encode memory matches the full run.
+    adapter.prepare_prompts(cfg.prompts_for(args.variant))
     summary.data["load_seconds"] = time.time() - t0
     describe = adapter.describe()
 
