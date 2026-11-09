@@ -1,17 +1,17 @@
 {
-  "end_utc": null,
-  "exit_code": null,
+  "end_utc": "2026-11-09T19:53:30.131676+00:00",
+  "exit_code": 3,
   "filters": {
     "limit_per_dataset": null,
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 5494.9039051532745,
+  "gen_seconds": 7785.792224884033,
   "gpu": 2,
   "home_variant": "FLUX.1-Kontext-dev",
   "is_steal": true,
   "load_seconds": 25.366179943084717,
-  "mean_s_per_img": 18.316346350510916,
+  "mean_s_per_img": 18.064483120380586,
   "pid": 375143,
   "preprocess_sizes": [
     [
@@ -37,8 +37,8 @@
     },
     "i3/default": {
       "failed": 0,
-      "generated": 17,
-      "skipped": 429
+      "generated": 148,
+      "skipped": 439
     }
   },
   "sanity": {
@@ -56,11 +56,32 @@
         "ok": false,
         "std": 63.02392125365669,
         "task": "Qwen-Image-Inpaint/i1/default/WSRD/0052.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.561944111454084,
+        "ok": false,
+        "std": 79.07462806814694,
+        "task": "Qwen-Image-Inpaint/i3/default/WSRD/0039.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.179047503067707,
+        "ok": false,
+        "std": 66.81233945362463,
+        "task": "Qwen-Image-Inpaint/i3/default/WSRD/0051.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.414192951735654,
+        "ok": false,
+        "std": 78.00259269122785,
+        "task": "Qwen-Image-Inpaint/i3/default/WSRD/0072.png"
       }
     ],
-    "n": 300,
-    "n_fail": 2,
-    "ns_psnr_min": 13.279328852761534,
+    "n": 431,
+    "n_fail": 5,
+    "ns_psnr_min": 13.179047503067707,
     "std_min": 11.567220646271794
   },
   "start_utc": "2026-11-09T17:42:56.208276+00:00",

@@ -1,17 +1,17 @@
 {
-  "end_utc": null,
-  "exit_code": null,
+  "end_utc": "2026-11-09T19:53:43.047072+00:00",
+  "exit_code": 3,
   "filters": {
     "limit_per_dataset": null,
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 5090.430634260178,
+  "gen_seconds": 7789.022962808609,
   "gpu": 3,
   "home_variant": "FLUX.1-Kontext-dev",
   "is_steal": true,
   "load_seconds": 25.8107008934021,
-  "mean_s_per_img": 16.96810211420059,
+  "mean_s_per_img": 16.969548938580846,
   "pid": 375476,
   "preprocess_sizes": [
     [
@@ -27,8 +27,18 @@
     },
     "i1/default": {
       "failed": 0,
-      "generated": 300,
+      "generated": 305,
       "skipped": 150
+    },
+    "i2/default": {
+      "failed": 0,
+      "generated": 0,
+      "skipped": 1033
+    },
+    "i3/default": {
+      "failed": 0,
+      "generated": 154,
+      "skipped": 427
     }
   },
   "sanity": {
@@ -46,11 +56,25 @@
         "ok": false,
         "std": 59.62170489087045,
         "task": "Qwen-Image-Inpaint/i1/default/WSRD/0053.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.55916593079981,
+        "ok": false,
+        "std": 73.17713606444198,
+        "task": "Qwen-Image-Inpaint/i3/default/WSRD/0033.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.32700781812461,
+        "ok": false,
+        "std": 56.64939941978845,
+        "task": "Qwen-Image-Inpaint/i3/default/WSRD/0052.png"
       }
     ],
-    "n": 300,
-    "n_fail": 2,
-    "ns_psnr_min": 13.625482959701813,
+    "n": 459,
+    "n_fail": 4,
+    "ns_psnr_min": 13.32700781812461,
     "std_min": 10.295527158358603
   },
   "start_utc": "2026-11-09T17:43:04.483198+00:00",
@@ -58,12 +82,12 @@
   "vram": {
     "interval_s": 0.05,
     "nvml_baseline_mib": 450.7,
-    "nvml_peak_mib": 18308.8,
+    "nvml_peak_mib": 18310.8,
     "nvml_total_mib": 24564.0,
     "phase_peaks_mib": {
-      "generate": 18308.8,
+      "generate": 18310.8,
       "load": 17910.8
     },
-    "torch_max_reserved_mib": 17592.0
+    "torch_max_reserved_mib": 17594.0
   }
 }

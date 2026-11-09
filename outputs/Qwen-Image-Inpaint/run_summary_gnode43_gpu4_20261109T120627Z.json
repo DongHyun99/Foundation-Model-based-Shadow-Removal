@@ -1,17 +1,17 @@
 {
-  "end_utc": null,
-  "exit_code": null,
+  "end_utc": "2026-11-09T19:53:38.501609+00:00",
+  "exit_code": 3,
   "filters": {
     "limit_per_dataset": null,
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 24846.61289167404,
+  "gen_seconds": 27926.916477918625,
   "gpu": 4,
   "home_variant": "Qwen-Image-Inpaint",
   "is_steal": false,
   "load_seconds": 24.53704524040222,
-  "mean_s_per_img": 17.135595097706236,
+  "mean_s_per_img": 17.133077593815106,
   "pid": 153538,
   "preprocess_sizes": [
     [
@@ -27,8 +27,18 @@
     },
     "i1/default": {
       "failed": 0,
-      "generated": 417,
+      "generated": 445,
       "skipped": 16
+    },
+    "i2/default": {
+      "failed": 0,
+      "generated": 0,
+      "skipped": 1033
+    },
+    "i3/default": {
+      "failed": 0,
+      "generated": 152,
+      "skipped": 429
     }
   },
   "sanity": {
@@ -74,10 +84,52 @@
         "ok": false,
         "std": 82.1824793435092,
         "task": "Qwen-Image-Inpaint/i0/default/WSRD/0054.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.36651375200711,
+        "ok": false,
+        "std": 77.07476275233385,
+        "task": "Qwen-Image-Inpaint/i1/default/WSRD/0033.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.512311812576757,
+        "ok": false,
+        "std": 80.94940177382786,
+        "task": "Qwen-Image-Inpaint/i1/default/WSRD/0039.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.416771776982667,
+        "ok": false,
+        "std": 66.02837469858521,
+        "task": "Qwen-Image-Inpaint/i1/default/WSRD/0051.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.808209890166989,
+        "ok": false,
+        "std": 77.07738355703881,
+        "task": "Qwen-Image-Inpaint/i1/default/WSRD/0054.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.802895260645055,
+        "ok": false,
+        "std": 71.9102129616084,
+        "task": "Qwen-Image-Inpaint/i3/default/WSRD/0054.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.071905413121007,
+        "ok": false,
+        "std": 77.62624369940272,
+        "task": "Qwen-Image-Inpaint/i3/default/WSRD/0074.png"
       }
     ],
-    "n": 1450,
-    "n_fail": 6,
+    "n": 1630,
+    "n_fail": 12,
     "ns_psnr_min": 12.24868620028527,
     "std_min": 9.67486203138898
   },
@@ -86,12 +138,12 @@
   "vram": {
     "interval_s": 0.05,
     "nvml_baseline_mib": 450.7,
-    "nvml_peak_mib": 18308.8,
+    "nvml_peak_mib": 18310.8,
     "nvml_total_mib": 24564.0,
     "phase_peaks_mib": {
-      "generate": 18308.8,
+      "generate": 18310.8,
       "load": 17970.8
     },
-    "torch_max_reserved_mib": 17592.0
+    "torch_max_reserved_mib": 17594.0
   }
 }
