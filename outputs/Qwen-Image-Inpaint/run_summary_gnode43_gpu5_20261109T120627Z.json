@@ -6,12 +6,12 @@
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 7740.977019309998,
+  "gen_seconds": 11241.973219156265,
   "gpu": 5,
   "home_variant": "Qwen-Image-Inpaint",
   "is_steal": false,
   "load_seconds": 24.535731077194214,
-  "mean_s_per_img": 17.202171154022217,
+  "mean_s_per_img": 17.295343414086563,
   "pid": 153537,
   "preprocess_sizes": [
     [
@@ -22,15 +22,15 @@
   "runs": {
     "i2/default": {
       "failed": 0,
-      "generated": 450,
+      "generated": 650,
       "skipped": 0
     }
   },
   "sanity": {
     "failures": [],
-    "n": 450,
+    "n": 650,
     "n_fail": 0,
-    "ns_psnr_min": 21.815684670463366,
+    "ns_psnr_min": 18.270320843850172,
     "std_min": 9.424370087865166
   },
   "start_utc": "2026-11-09T12:06:27.005549+00:00",
