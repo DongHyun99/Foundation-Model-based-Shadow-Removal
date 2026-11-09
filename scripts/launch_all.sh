@@ -27,8 +27,14 @@ if pgrep -f "scripts/run.py --variant" >/dev/null; then
   echo "launch_all: run.py workers are still alive; refusing to start (claims would be wiped under them)" >&2
   exit 1
 fi
-rm -rf "$OUT_ROOT/.claims"
 mkdir -p "$LOG_DIR"
+# Keep the poison history of the previous launch, then clear claims so failed tasks are retried.
+if [ -d "$OUT_ROOT/.claims" ]; then
+  dest="$PWD/$LOG_DIR/previous_failed"
+  mkdir -p "$dest"
+  (cd "$OUT_ROOT/.claims" && find . -name '*.failed' -exec cp --parents {} "$dest" \;)
+fi
+rm -rf "$OUT_ROOT/.claims"
 echo "launch_all: OUT_ROOT=$OUT_ROOT GPU_MAP=$GPU_MAP logs=$LOG_DIR"
 
 supervise() {

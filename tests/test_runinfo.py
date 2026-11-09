@@ -3,7 +3,7 @@ import copy
 import pytest
 import yaml
 
-from fmsr.runinfo import RunConfigMismatch, write_run_config
+from fmsr.runinfo import REQUIRED_KEYS, RunConfigMismatch, missing_required_keys, write_run_config
 
 
 def _cfg():
@@ -28,6 +28,17 @@ def test_no_clobber_and_informational_fields_ignored(tmp_path):
     assert write_run_config(path, again) == "matched"
     assert yaml.safe_load(path.read_text())["repo_git_sha"] == "aaa"
     assert [p.name for p in tmp_path.iterdir()] == ["run_config.yaml"]
+
+
+def test_required_keys_allow_empty_prompt_only():
+    full = {k: "x" for k in REQUIRED_KEYS}
+    full.update(seed=0, quantization={"a": 1}, sampling_params={"s": 1}, versions={"torch": "1"}, resolution=[256, 256])
+    assert missing_required_keys(full) == []
+    assert missing_required_keys({**full, "prompt_text": ""}) == []  # prompt i0
+    assert missing_required_keys({**full, "hf_revision": ""}) == ["hf_revision"]
+    assert missing_required_keys({**full, "quantization": {}}) == ["quantization"]
+    del full["seed"]
+    assert missing_required_keys(full) == ["seed"]
 
 
 def test_repro_key_mismatch_aborts(tmp_path):

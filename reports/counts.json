@@ -145,6 +145,40 @@
       "run_config_missing_keys": []
     }
   },
+  "sanity_by_variant": {
+    "FLUX.1-Fill-dev": {
+      "generated": 4132,
+      "ns_psnr_min": 3.0569940941854483,
+      "sanity_fail": 3061,
+      "sanity_fail_rate": 0.7408034849951597,
+      "sanity_n": 4132,
+      "std_min": 2.231710708013013
+    },
+    "FLUX.1-Kontext-dev": {
+      "generated": 4132,
+      "ns_psnr_min": 1.5626913112565526,
+      "sanity_fail": 1088,
+      "sanity_fail_rate": 0.2633107454017425,
+      "sanity_n": 4132,
+      "std_min": 0.7192269954578631
+    },
+    "Qwen-Image-Edit-2509": {
+      "generated": 4132,
+      "ns_psnr_min": 4.785950276912097,
+      "sanity_fail": 914,
+      "sanity_fail_rate": 0.22120038722168442,
+      "sanity_n": 4132,
+      "std_min": 0.9327558850243356
+    },
+    "Qwen-Image-Inpaint": {
+      "generated": 4132,
+      "ns_psnr_min": 11.85201277044067,
+      "sanity_fail": 32,
+      "sanity_fail_rate": 0.007744433688286544,
+      "sanity_n": 4132,
+      "std_min": 9.424370087865166
+    }
+  },
   "total": {
     "complete": true,
     "composite": 16528,

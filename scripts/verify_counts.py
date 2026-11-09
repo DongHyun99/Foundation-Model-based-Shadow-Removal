@@ -1,4 +1,5 @@
-"""Count expected vs present outputs per run, validate run_config.yaml records, list .failed tasks.
+"""Count expected vs present outputs per run, validate run_config.yaml records, list .failed tasks,
+and aggregate raw-output sanity results (fmsr.sanity) per variant from the run summaries.
 
 Writes reports/counts.json. With --expect-complete, exits 1 unless every run is complete with no failures.
 Directories starting with '_' or '.' (outputs/_smoke, outputs/.claims) are not part of the full run.
@@ -15,21 +16,9 @@ import yaml
 
 from fmsr import tasks as T
 from fmsr.config import load_config
+from fmsr.runinfo import missing_required_keys
+from fmsr.sanity import aggregate_summaries
 
-REQUIRED_KEYS = [
-    "variant",
-    "hf_repo",
-    "hf_revision",
-    "pipeline_class",
-    "quantization",
-    "prompt_id",
-    "prompt_text",
-    "sampling_id",
-    "sampling_params",
-    "seed",
-    "resolution",
-    "versions",
-]
 
 
 def main():
@@ -54,9 +43,7 @@ def main():
             rc_path = os.path.join(args.out_root, rel, "run_config.yaml")
             rc_missing_keys = None
             if os.path.exists(rc_path):
-                rc = yaml.safe_load(open(rc_path))
-                # prompt_text may legitimately be "" (prompt i0); a key is missing only when absent or null/empty dict.
-                rc_missing_keys = [k for k in REQUIRED_KEYS if rc.get(k) is None or rc.get(k) == {}]
+                rc_missing_keys = missing_required_keys(yaml.safe_load(open(rc_path)))
             runs[rel] = {
                 "expected": len(ts),
                 "raw": raw,
@@ -93,12 +80,15 @@ def main():
         and total["png_files_on_disk"] == total["expected_pngs"]
     )
     total["complete"] = complete
-    report = {"total": total, "runs": runs}
+    # Output sanity of raw generations (reported, not gated: a failure is a model-output observation).
+    summaries = [json.load(open(p)) for p in sorted(glob.glob(os.path.join(args.out_root, "*", "run_summary_*.json")))]
+    sanity = aggregate_summaries(summaries)
+    report = {"total": total, "sanity_by_variant": sanity, "runs": runs}
     os.makedirs(os.path.dirname(args.report), exist_ok=True)
     with open(args.report, "w") as f:
         json.dump(report, f, indent=2, sort_keys=True)
         f.write("\n")
-    print(json.dumps(total, indent=2))
+    print(json.dumps({"total": total, "sanity_by_variant": sanity}, indent=2))
     if args.expect_complete and not complete:
         sys.exit(1)
 

@@ -103,6 +103,11 @@ model behaviour at the specified resolution, not quantization. The smoke test re
 sanity waiver. Fill's **composite** output is still well defined (the mask region is generated, the rest
 is the input).
 
+**Status: awaiting a user decision.** The approved plan says a sanity-gate failure must be reported to
+the user before continuing. Instead, the full run went ahead at the spec's 256x256 with this waiver, and
+the user was told only after launch. The options are all additive: keep the 256 results as-is, add a
+512x512 sampling ID for Fill (or for every variant), or exclude Fill from comparisons.
+
 ## Evaluation (Python quick check; MATLAB is authoritative)
 
 `scripts/evaluate.py` scores raw and composite outputs per variant x prompt x sampling x test, plus an
@@ -137,6 +142,25 @@ including raw outputs, SSIM, MAE and LPIPS, are in `results/metrics_summary.csv`
 | Qwen-Image-Edit-2509 | e1: 8.15 / 35.92 / 2.94, 21.86 dB | e1: 15.11 / 41.26 / 5.25, 17.40 dB | e2: 23.05 / 37.99 / 16.34, 15.93 dB |
 
 NS is identical to the input for composites by construction. On WSRD (large, irregular masks) only
-Kontext matches or beats the input. Run statistics: every variant generated exactly 4,132 images with
-0 failures; mean time per image on an A5000 at 256x256: Kontext 9.7 s, Fill 15.6 s, Qwen-Inpaint
-17.3 s, Qwen-Edit-2509 20.9 s.
+Kontext matches or beats the input. Every variant generated exactly 4,132 images with no pipeline
+errors (no `.failed` tasks). Mean time per image on an A5000 at 256x256: Kontext 9.7 s, Fill 15.6 s,
+Qwen-Inpaint 17.3 s, Qwen-Edit-2509 20.9 s.
+
+### Raw-output sanity (reported, not gated)
+
+Each raw output is checked for finite values, a non-flat image (RGB std > 2) and a non-shadow region close
+to the input (PSNR >= 15 dB). In the full run, a failure here describes what the model generated; it is not
+a pipeline error. `scripts/verify_counts.py` aggregates the results into `reports/counts.json`
+(`sanity_by_variant`):
+
+| Variant | Sanity failures (raw) | Min NS PSNR | Min RGB std |
+|---|---|---|---|
+| FLUX.1-Fill-dev | 3,061 / 4,132 (74.1%) | 3.06 dB | 2.23 |
+| FLUX.1-Kontext-dev | 1,088 / 4,132 (26.3%) | 1.56 dB | 0.72 |
+| Qwen-Image-Edit-2509 | 914 / 4,132 (22.1%) | 4.79 dB | 0.93 |
+| Qwen-Image-Inpaint | 32 / 4,132 (0.8%) | 11.85 dB | 9.42 |
+
+The edit models sometimes change the whole image: global tone shifts, or near-blank outputs. In the
+final QA scan, raw outputs with RGB std < 2 numbered 323 for Kontext, 4 for Qwen-Edit-2509 and 0 for the
+other two, and none of the matching inputs were flat. Such failures lower the **raw** metrics; in
+**composite** outputs only the shadow region is affected.

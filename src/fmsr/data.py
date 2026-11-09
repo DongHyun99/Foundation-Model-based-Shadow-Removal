@@ -52,7 +52,3 @@ def load_mask_bin(path, threshold):
     with Image.open(path) as img:
         gray = np.asarray(img.convert("L"))
     return Image.fromarray(np.where(gray > threshold, 255, 0).astype(np.uint8), mode="L")
-
-
-def mask_bool(mask_l):
-    return np.asarray(mask_l) > 0

@@ -1,0 +1,102 @@
+{
+ "kind": "algorithm-boundary-test-report",
+ "head": "362dbe4",
+ "status": "passed",
+ "checks": [
+  {
+   "check": "pip check",
+   "command": "venv/bin/pip check",
+   "result": "No broken requirements found (rc 0)",
+   "status": "pass"
+  },
+  {
+   "check": "requirements pins",
+   "command": "grep -vE \"^\\s*(#|$|-)\" requirements.txt | grep -v ==",
+   "result": "0 non-option lines lack ==; only option lines are 2x --extra-index-url",
+   "status": "pass"
+  },
+  {
+   "check": "pytest",
+   "command": "venv/bin/python -m pytest -q -p no:cacheprovider tests",
+   "result": "22 passed",
+   "status": "pass"
+  },
+  {
+   "check": "verify_counts complete",
+   "command": "venv/bin/python scripts/verify_counts.py --out-root outputs --report /tmp/fmsr_qa/counts.json --expect-complete",
+   "result": "rc 0; expected_tasks 16528, 33056/33056 PNGs, 16/16 run_configs, 0 missing, 0 failed",
+   "status": "pass"
+  },
+  {
+   "check": "resume exits 3",
+   "command": "CUDA_VISIBLE_DEVICES=0 venv/bin/python scripts/run.py --variant Qwen-Image-Edit-2509 --gpu 0",
+   "result": "rc 3 in 1.8s: nothing left to claim; exiting without loading",
+   "status": "pass"
+  },
+  {
+   "check": "git ls-files hygiene",
+   "command": "git ls-files | grep -iE \"\\.(png|jpe?g|safetensors)$|^venv/\"",
+   "result": "0 matches of 92 tracked files",
+   "status": "pass"
+  },
+  {
+   "check": "CSV counts/sizes",
+   "command": "wc -l results/**; ls -l",
+   "result": "summary 99 rows; 8264 rows each variant; Input 1033; max file 1.08MB (<5MB)",
+   "status": "pass"
+  },
+  {
+   "check": "metric recompute",
+   "command": "/tmp/fmsr_qa/recompute.py",
+   "result": "40 images (all variant x test x output_type + 16 random) match Lab all/S/NS, n_s/n_ns, PSNR, SSIM, MAE; max rel diff 4.3e-6 (<1e-4). 4 summary rows (3 random + Input/AISTD) means incl. LPIPS and pooled-S match per-image CSV",
+   "status": "pass"
+  },
+  {
+   "check": "output invariants",
+   "command": "/tmp/fmsr_qa/invariants.py",
+   "result": "300 random composites over 45 variant/prompt/test combos: 256x256 RGB; composite==input outside mask; composite==raw inside mask; stem matches test_A (SRD .JPG.jpg->.JPG.png) : 0 violations",
+   "status": "pass"
+  },
+  {
+   "check": "adv a missing composite",
+   "command": "copy of outputs in /tmp/fmsr_qa/OUT; remove one composite; verify_counts --expect-complete",
+   "result": "rc 1; missing_tasks 1 (run composite 1032/1033)",
+   "status": "pass"
+  },
+  {
+   "check": "adv b .failed marker",
+   "command": "run.py --pick-next --out-root copy --min-remaining 1; verify_counts",
+   "result": "pending-only: remaining Qwen-Edit=1 -> picked; with .failed: remaining 0 -> nothing picked; verify_counts failed=1; try_claim False",
+   "status": "pass"
+  },
+  {
+   "check": "adv c stale lock",
+   "command": "fmsr.tasks.try_claim",
+   "result": "dead-pid same-host lock stale -> try_claim True, owned; live-owner reclaim False; foreign fresh not stale, foreign >1800s stale and reclaimable",
+   "status": "pass"
+  },
+  {
+   "check": "adv d size mismatch",
+   "command": "evaluate.py --out-root EO --results /tmp/fmsr_qa/res (one 128x128 pred)",
+   "result": "ValueError size mismatch pred (128,128,3) vs gt (256,256,3), rc 1, no results written; control run rc 0",
+   "status": "pass"
+  },
+  {
+   "check": "adv e run_config mismatch",
+   "command": "fmsr.runinfo.write_run_config with altered prompt_text",
+   "result": "RunConfigMismatch [prompt_text]; identical -> matched; host change tolerated; seed change raises",
+   "status": "pass"
+  }
+ ],
+ "advisories": [
+  {
+   "item": "near-white raw generations",
+   "detail": "raw PNG std<2 per variant of 4132: Fill 0, Inpaint 0, Kontext 323, Qwen-Edit 4; inputs not flat; model failure, composites still valid; /tmp/fmsr_qa/flat.json"
+  },
+  {
+   "item": "verify_counts side effect",
+   "detail": "copies .failed files to ./logs/failed relative to cwd (untracked, gitignored); not a defect"
+  }
+ ],
+ "blockers": []
+}

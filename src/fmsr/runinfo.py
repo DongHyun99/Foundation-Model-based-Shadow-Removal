@@ -56,6 +56,35 @@ REPRO_KEYS = [
 ]
 
 
+# Keys every committed run_config.yaml must carry (validated by scripts/verify_counts.py).
+REQUIRED_KEYS = [
+    "variant",
+    "hf_repo",
+    "hf_revision",
+    "pipeline_class",
+    "quantization",
+    "prompt_id",
+    "prompt_text",
+    "sampling_id",
+    "sampling_params",
+    "seed",
+    "resolution",
+    "versions",
+]
+# Prompt i0 is intentionally the empty string.
+EMPTY_ALLOWED = {"prompt_text"}
+
+
+def missing_required_keys(cfg):
+    """Required keys that are absent, null, empty containers, or empty strings (except where allowed)."""
+    missing = []
+    for k in REQUIRED_KEYS:
+        v = cfg.get(k)
+        if v is None or (isinstance(v, (dict, list)) and not v) or (v == "" and k not in EMPTY_ALLOWED):
+            missing.append(k)
+    return missing
+
+
 class RunConfigMismatch(RuntimeError):
     pass
 

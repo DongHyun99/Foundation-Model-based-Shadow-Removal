@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from fmsr.metrics import lab_error, mae, psnr, ssim, to_lab
-from fmsr.sanity import check_output
+from fmsr.sanity import aggregate_summaries, check_output
 
 
 def _img(seed):
@@ -45,6 +45,17 @@ def test_psnr_mae_known_values():
     b = np.full((4, 4, 3), 10, dtype=np.uint8)
     assert mae(a, b) == 10
     assert psnr(a, b) == pytest.approx(10 * np.log10(255**2 / 100))
+
+
+def test_aggregate_summaries_by_target_variant():
+    def s(v, gen, n, fail, std, ns):
+        return {"target_variant": v, "runs": {"i1/default": {"generated": gen}},
+                "sanity": {"n": n, "n_fail": fail, "std_min": std, "ns_psnr_min": ns}}
+
+    agg = aggregate_summaries([s("A", 10, 10, 2, 5.0, 20.0), s("A", 30, 30, 1, 1.0, 30.0), s("B", 0, 0, 0, None, None)])
+    assert agg["A"] == {"generated": 40, "sanity_n": 40, "sanity_fail": 3, "std_min": 1.0, "ns_psnr_min": 20.0,
+                        "sanity_fail_rate": 3 / 40}
+    assert agg["B"]["sanity_fail_rate"] is None and agg["B"]["std_min"] is None
 
 
 def test_sanity_rejects_flat_output():
