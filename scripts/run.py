@@ -30,18 +30,24 @@ EXIT_DRAINED = 3
 SUMMARY_EVERY = 50
 
 
+def env_int(name):
+    """Integer env override; unset or empty means no override."""
+    value = os.environ.get(name, "").strip()
+    return int(value) if value else None
+
+
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--variant")
     p.add_argument("--home", help="Home variant of this GPU (default: --variant); marks stolen work")
     p.add_argument("--gpu", type=int, required=True)
-    p.add_argument("--out-root", default=os.environ.get("OUT_ROOT", "outputs"))
+    p.add_argument("--out-root", default=os.environ.get("OUT_ROOT") or "outputs")
     p.add_argument("--prompts", nargs="*", default=os.environ.get("PROMPTS", "").split() or None)
     p.add_argument("--samplings", nargs="*", default=os.environ.get("SAMPLINGS", "").split() or None)
-    p.add_argument("--limit-per-dataset", type=int, default=int(os.environ.get("LIMIT_PER_DATASET", 0)) or None)
+    p.add_argument("--limit-per-dataset", type=int, default=env_int("LIMIT_PER_DATASET"))
     p.add_argument("--pick-next", action="store_true")
     p.add_argument("--exclude", nargs="*", default=[])
-    p.add_argument("--min-remaining", type=int, default=int(os.environ.get("MIN_REMAINING", 0)) or None)
+    p.add_argument("--min-remaining", type=int, default=env_int("MIN_REMAINING"))
     p.add_argument("--stale-after-s", type=float, default=T.DEFAULT_STALE_AFTER_S)
     args = p.parse_args()
     if not args.pick_next and not args.variant:
