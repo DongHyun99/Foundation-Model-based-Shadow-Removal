@@ -1,0 +1,49 @@
+{
+  "end_utc": null,
+  "exit_code": null,
+  "filters": {
+    "limit_per_dataset": null,
+    "prompts": null,
+    "samplings": null
+  },
+  "gen_seconds": 4277.48735332489,
+  "gpu": 4,
+  "home_variant": "Qwen-Image-Inpaint",
+  "is_steal": false,
+  "load_seconds": 24.53704524040222,
+  "mean_s_per_img": 17.10994941329956,
+  "pid": 153538,
+  "preprocess_sizes": [
+    [
+      256,
+      256
+    ]
+  ],
+  "runs": {
+    "i0/default": {
+      "failed": 0,
+      "generated": 250,
+      "skipped": 0
+    }
+  },
+  "sanity": {
+    "failures": [],
+    "n": 250,
+    "n_fail": 0,
+    "ns_psnr_min": 21.30449966386771,
+    "std_min": 9.67486203138898
+  },
+  "start_utc": "2026-11-09T12:06:27.014797+00:00",
+  "target_variant": "Qwen-Image-Inpaint",
+  "vram": {
+    "interval_s": 0.05,
+    "nvml_baseline_mib": 450.7,
+    "nvml_peak_mib": 18308.8,
+    "nvml_total_mib": 24564.0,
+    "phase_peaks_mib": {
+      "generate": 18308.8,
+      "load": 17970.8
+    },
+    "torch_max_reserved_mib": 17592.0
+  }
+}

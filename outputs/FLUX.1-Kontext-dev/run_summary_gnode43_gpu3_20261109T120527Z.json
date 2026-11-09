@@ -1,0 +1,192 @@
+{
+  "end_utc": null,
+  "exit_code": null,
+  "filters": {
+    "limit_per_dataset": null,
+    "prompts": null,
+    "samplings": null
+  },
+  "gen_seconds": 4858.274742364883,
+  "gpu": 3,
+  "home_variant": "FLUX.1-Kontext-dev",
+  "is_steal": false,
+  "load_seconds": 32.85775804519653,
+  "mean_s_per_img": 9.716549484729766,
+  "pid": 152088,
+  "preprocess_sizes": [
+    [
+      256,
+      256
+    ]
+  ],
+  "runs": {
+    "e3/default": {
+      "failed": 0,
+      "generated": 500,
+      "skipped": 0
+    }
+  },
+  "sanity": {
+    "failures": [
+      {
+        "finite": true,
+        "ns_psnr": 12.815982101478534,
+        "ok": false,
+        "std": 73.02648880818442,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/105-13.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.008097513586907,
+        "ok": false,
+        "std": 69.06351744838786,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/105-15.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.844352659670166,
+        "ok": false,
+        "std": 64.55979010845722,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/105-16.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 12.405467158889063,
+        "ok": false,
+        "std": 71.85306202224444,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/105-18.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.757172706698668,
+        "ok": false,
+        "std": 67.23237431682426,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/105-20.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.99360084176362,
+        "ok": false,
+        "std": 57.25465536609954,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/105-21.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.921918666318012,
+        "ok": false,
+        "std": 50.29996193083125,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/107-6.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.925111277468195,
+        "ok": false,
+        "std": 67.08677205101158,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/108-1.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.097254600157253,
+        "ok": false,
+        "std": 49.61435503130895,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/108-14.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.621792829295243,
+        "ok": false,
+        "std": 52.68222920736114,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/108-15.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.710313256135771,
+        "ok": false,
+        "std": 76.16291828236818,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/108-3.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 10.335163801750591,
+        "ok": false,
+        "std": 85.52853719321844,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/108-4.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.868872891680839,
+        "ok": false,
+        "std": 61.756366945093454,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/109-1.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.165272357189009,
+        "ok": false,
+        "std": 29.81193309648878,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/109-10.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 12.97417853811332,
+        "ok": false,
+        "std": 32.04152038897572,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/109-12.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.453075676322863,
+        "ok": false,
+        "std": 31.95991435529817,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/109-13.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.571020500360948,
+        "ok": false,
+        "std": 55.42080007479606,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/109-5.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 10.330483419730154,
+        "ok": false,
+        "std": 31.96292343938237,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/109-9.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.742906518196143,
+        "ok": false,
+        "std": 49.979339593685786,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/111-2.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 13.032678274183114,
+        "ok": false,
+        "std": 56.17775090353155,
+        "task": "FLUX.1-Kontext-dev/e3/default/AISTD/112-1.png"
+      }
+    ],
+    "n": 500,
+    "n_fail": 91,
+    "ns_psnr_min": 8.602539339693921,
+    "std_min": 15.022710526612169
+  },
+  "start_utc": "2026-11-09T12:05:27.068461+00:00",
+  "target_variant": "FLUX.1-Kontext-dev",
+  "vram": {
+    "interval_s": 0.05,
+    "nvml_baseline_mib": 450.7,
+    "nvml_peak_mib": 15682.8,
+    "nvml_total_mib": 24564.0,
+    "phase_peaks_mib": {
+      "encode": 10158.8,
+      "generate": 15682.8,
+      "load": 9984.8,
+      "load_transformer": 15350.8
+    },
+    "torch_max_reserved_mib": 14966.0
+  }
+}
