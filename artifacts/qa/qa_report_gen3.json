@@ -1,0 +1,3 @@
+{"kind":"algorithm-boundary-test-report","generation":3,"head":"80fc730","status":"pass","e2eStatus":"pass","redTeamStatus":"pass",
+"checks":{"diff_only_README":true,"pytest":"24 passed","verify_counts_expect_complete_exit":0,"told_only_after_launch_absent":true,"sanity_table_matches_counts_json":true},
+"artifacts":["/tmp/fmsr_qa/counts3.json"],"blockers":[]}

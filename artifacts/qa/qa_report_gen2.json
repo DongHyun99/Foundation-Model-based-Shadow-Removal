@@ -1,0 +1,70 @@
+{
+ "kind": "algorithm-boundary-test-report",
+ "generation": 2,
+ "sourceHash": "sha256:360c87d091627c47729cd64b7c2e0dc9de7c3b2c4707682ab3aa5a8c6439ecaf",
+ "checks": [
+  {
+   "name": "pytest",
+   "command": "venv/bin/python -m pytest -q -p no:cacheprovider tests",
+   "result": "24 passed",
+   "pass": true
+  },
+  {
+   "name": "verify_counts expect-complete",
+   "command": "cd /tmp/fmsr_qa; PYTHONPATH=src venv/bin/python scripts/verify_counts.py --out-root outputs --report /tmp/fmsr_qa/counts2.json --expect-complete",
+   "result": "exit 0; generated 4132 per variant",
+   "pass": true
+  },
+  {
+   "name": "independent sanity/generated sum",
+   "command": "python sum over outputs/*/run_summary_*.json grouped by target_variant",
+   "result": {
+    "FLUX.1-Fill-dev": {
+     "generated": 4132,
+     "sanity_n": 4132,
+     "sanity_fail": 3061,
+     "matches_script": true
+    },
+    "FLUX.1-Kontext-dev": {
+     "generated": 4132,
+     "sanity_n": 4132,
+     "sanity_fail": 1088,
+     "matches_script": true
+    },
+    "Qwen-Image-Edit-2509": {
+     "generated": 4132,
+     "sanity_n": 4132,
+     "sanity_fail": 914,
+     "matches_script": true
+    },
+    "Qwen-Image-Inpaint": {
+     "generated": 4132,
+     "sanity_n": 4132,
+     "sanity_fail": 32,
+     "matches_script": true
+    }
+   },
+   "pass": true
+  },
+  {
+   "name": "missing_required_keys adversarial",
+   "command": "python call with crafted cfgs",
+   "result": {
+    "prompt_text ''": "allowed",
+    "hf_revision ''": "flagged",
+    "quantization {}": "flagged",
+    "seed 0": "allowed",
+    "missing hf_repo": "flagged",
+    "versions []": "flagged"
+   },
+   "pass": true
+  },
+  {
+   "name": "launch_all claims archive snippet",
+   "command": "extracted snippet run in /tmp/fmsr_qa/arch.* with nested .failed/.lock",
+   "result": "nested .failed copied with structure to logs/previous_failed; .lock not copied; .claims removed; absent .claims dir rc=0, no error",
+   "pass": true
+  }
+ ],
+ "pass": true
+}
