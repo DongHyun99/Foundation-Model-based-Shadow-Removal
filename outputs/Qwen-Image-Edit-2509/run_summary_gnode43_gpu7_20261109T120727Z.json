@@ -6,12 +6,12 @@
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 11585.217798233032,
+  "gen_seconds": 14749.637906551361,
   "gpu": 7,
   "home_variant": "Qwen-Image-Edit-2509",
   "is_steal": false,
   "load_seconds": 26.75688934326172,
-  "mean_s_per_img": 21.064032360423695,
+  "mean_s_per_img": 21.070911295073373,
   "pid": 154767,
   "preprocess_sizes": [
     [
@@ -22,7 +22,7 @@
   "runs": {
     "e3/default": {
       "failed": 0,
-      "generated": 550,
+      "generated": 700,
       "skipped": 0
     }
   },
@@ -169,8 +169,8 @@
         "task": "Qwen-Image-Edit-2509/e3/default/AISTD/121-12.png"
       }
     ],
-    "n": 550,
-    "n_fail": 58,
+    "n": 700,
+    "n_fail": 82,
     "ns_psnr_min": 5.2196176850969636,
     "std_min": 12.077455117707366
   },

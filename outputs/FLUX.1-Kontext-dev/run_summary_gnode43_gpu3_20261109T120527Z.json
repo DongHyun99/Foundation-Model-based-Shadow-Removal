@@ -6,12 +6,12 @@
     "prompts": null,
     "samplings": null
   },
-  "gen_seconds": 11647.694700956345,
+  "gen_seconds": 15049.833707809448,
   "gpu": 3,
   "home_variant": "FLUX.1-Kontext-dev",
   "is_steal": false,
   "load_seconds": 32.85775804519653,
-  "mean_s_per_img": 9.706412250796953,
+  "mean_s_per_img": 9.709570134070612,
   "pid": 152088,
   "preprocess_sizes": [
     [
@@ -27,7 +27,7 @@
     },
     "e4/default": {
       "failed": 0,
-      "generated": 167,
+      "generated": 517,
       "skipped": 0
     }
   },
@@ -174,10 +174,10 @@
         "task": "FLUX.1-Kontext-dev/e3/default/AISTD/112-1.png"
       }
     ],
-    "n": 1200,
-    "n_fail": 283,
-    "ns_psnr_min": 5.638780376614108,
-    "std_min": 0.7306425154924988
+    "n": 1550,
+    "n_fail": 602,
+    "ns_psnr_min": 5.161300980484213,
+    "std_min": 0.7192269954578631
   },
   "start_utc": "2026-11-09T12:05:27.068461+00:00",
   "target_variant": "FLUX.1-Kontext-dev",
