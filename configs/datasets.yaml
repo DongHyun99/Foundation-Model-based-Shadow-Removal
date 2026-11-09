@@ -1,0 +1,10 @@
+root: ../dataset
+tests:
+  AISTD: 540
+  SRD: 393
+  WSRD: 100
+subdirs:
+  shadow: test_A
+  mask: test_B
+  gt: test_C
+mask_threshold: 127

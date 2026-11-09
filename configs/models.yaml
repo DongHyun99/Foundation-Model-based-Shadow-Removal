@@ -1,0 +1,50 @@
+# Four zero-shot variants. Each GPU process loads exactly one model.
+# gpus: home GPUs for the supervisor launcher. cost_weight / min_remaining: work-stealing rule.
+variants:
+  FLUX.1-Fill-dev:
+    hf_repo: black-forest-labs/FLUX.1-Fill-dev
+    adapter: flux_fill
+    kind: inpaint
+    gpus: [0, 1]
+    cost_weight: 50
+    min_remaining: 60
+    quantization:
+      transformer: {method: layerwise_casting, storage_dtype: float8_e4m3fn, compute_dtype: bfloat16, skip_patterns: diffusers_default}
+      text_encoder: bf16
+      text_encoder_2: bf16
+      vae: bf16
+  FLUX.1-Kontext-dev:
+    hf_repo: black-forest-labs/FLUX.1-Kontext-dev
+    adapter: flux_kontext
+    kind: edit
+    gpus: [2, 3]
+    cost_weight: 28
+    min_remaining: 60
+    quantization:
+      transformer: {method: layerwise_casting, storage_dtype: float8_e4m3fn, compute_dtype: bfloat16, skip_patterns: diffusers_default}
+      text_encoder: bf16
+      text_encoder_2: bf16
+      vae: bf16
+  Qwen-Image-Inpaint:
+    hf_repo: Qwen/Qwen-Image
+    adapter: qwen_inpaint
+    kind: inpaint
+    gpus: [4, 5]
+    cost_weight: 100
+    min_remaining: 10
+    quantization:
+      transformer: {backend: bitsandbytes_4bit, bnb_4bit_quant_type: nf4, bnb_4bit_compute_dtype: bfloat16, llm_int8_skip_modules: [transformer_blocks.0.img_mod]}
+      text_encoder: {backend: transformers_bitsandbytes_4bit, bnb_4bit_quant_type: nf4, bnb_4bit_compute_dtype: bfloat16}
+      vae: bf16
+  Qwen-Image-Edit-2509:
+    hf_repo: Qwen/Qwen-Image-Edit-2509
+    adapter: qwen_edit_plus
+    kind: edit
+    gpus: [6, 7]
+    cost_weight: 80
+    min_remaining: 10
+    quantization:
+      transformer: {backend: bitsandbytes_4bit, bnb_4bit_quant_type: nf4, bnb_4bit_compute_dtype: bfloat16, llm_int8_skip_modules: [transformer_blocks.0.img_mod]}
+      text_encoder: {backend: transformers_bitsandbytes_4bit, bnb_4bit_quant_type: nf4, bnb_4bit_compute_dtype: bfloat16}
+      vae: bf16
+vram_limit_mib: 23000

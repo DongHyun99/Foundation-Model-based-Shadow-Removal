@@ -1,0 +1,11 @@
+# Fixed prompt sets per model kind. Never edit an existing ID's text: add a new ID instead.
+inpaint:
+  i0: ""
+  i1: "remove the shadow"
+  i2: "the same surface without any shadow, natural even lighting, consistent texture and color"
+  i3: "shadow-free, uniformly lit, photorealistic"
+edit:
+  e1: "Remove the shadow."
+  e2: "Remove all shadows from the image while keeping everything else exactly the same."
+  e3: "Relight the shadowed region so that it matches the surrounding illumination, preserving texture and color."
+  e4: "Make the image shadow-free with uniform lighting."
