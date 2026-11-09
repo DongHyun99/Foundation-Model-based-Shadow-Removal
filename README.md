@@ -121,3 +121,22 @@ is the input).
 
 Outputs: `results/metrics_summary.csv` (one row per variant x prompt x sampling x test x output type,
 plus `Input` rows) and `results/per_image/<Variant>.csv`, `results/per_image/Input.csv`.
+
+## Results (sampling `default`, 256x256, composite outputs, Python quick check)
+
+Lab error ("RMSE") all / S / NS and PSNR; for each variant and dataset, the prompt with the lowest
+"RMSE" all. Full tables,
+including raw outputs, SSIM, MAE and LPIPS, are in `results/metrics_summary.csv`.
+
+| Variant | AISTD | SRD | WSRD |
+|---|---|---|---|
+| Input (shadow image) | 8.76 / 38.13 / 2.94, 20.37 dB | 14.01 / 37.17 / 5.25, 18.03 dB | 19.63 / 28.82 / 16.34, 16.84 dB |
+| FLUX.1-Fill-dev | i1: 6.59 / 27.73 / 2.94, 22.75 dB | i1: 13.25 / 32.70 / 5.25, 18.96 dB | i1: 28.18 / 54.47 / 16.34, 13.06 dB |
+| FLUX.1-Kontext-dev | e1: 5.49 / 19.09 / 2.94, 26.47 dB | e1: 10.98 / 24.12 / 5.25, 21.67 dB | e1: 19.52 / 28.55 / 16.34, 17.21 dB |
+| Qwen-Image-Inpaint | i2: 5.86 / 21.19 / 2.94, 25.26 dB | i2: 11.98 / 28.08 / 5.25, 19.95 dB | i2: 23.15 / 35.61 / 16.34, 16.08 dB |
+| Qwen-Image-Edit-2509 | e1: 8.15 / 35.92 / 2.94, 21.86 dB | e1: 15.11 / 41.26 / 5.25, 17.40 dB | e2: 23.05 / 37.99 / 16.34, 15.93 dB |
+
+NS is identical to the input for composites by construction. On WSRD (large, irregular masks) only
+Kontext matches or beats the input. Run statistics: every variant generated exactly 4,132 images with
+0 failures; mean time per image on an A5000 at 256x256: Kontext 9.7 s, Fill 15.6 s, Qwen-Inpaint
+17.3 s, Qwen-Edit-2509 20.9 s.
