@@ -1,0 +1,50 @@
+{
+  "purpose": "FLUX.1-Fill-dev sanity failure at 256: separate quantization from resolution",
+  "image": "AISTD/100-1.png",
+  "prompt": "remove the shadow",
+  "sampling": "steps 50, guidance 30, seed 0",
+  "modes": {
+    "default": "fp8 layerwise casting (run config)",
+    "skipio": "fp8 with x_embedder/context_embedder/proj_out kept bf16",
+    "cpuoffload": "full bf16 transformer, model CPU offload (no quantization)"
+  },
+  "results": {
+    "default@256": {
+      "finite": true,
+      "std": 44.85041488648063,
+      "ns_psnr": 12.917814823448966,
+      "ok": false
+    },
+    "default@512": {
+      "finite": true,
+      "std": 44.47470970091834,
+      "ns_psnr": 29.03269500572961,
+      "ok": true
+    },
+    "skipio@256": {
+      "finite": true,
+      "std": 44.53594399665808,
+      "ns_psnr": 13.34408948126824,
+      "ok": false
+    },
+    "skipio@512": {
+      "finite": true,
+      "std": 44.145313679466895,
+      "ns_psnr": 29.355155254554248,
+      "ok": true
+    },
+    "cpuoffload@256": {
+      "finite": true,
+      "std": 45.55413115440932,
+      "ns_psnr": 13.37682234064022,
+      "ok": false
+    },
+    "cpuoffload@512": {
+      "finite": true,
+      "std": 44.31133055819477,
+      "ns_psnr": 29.399104221481682,
+      "ok": true
+    }
+  },
+  "conclusion": "Non-shadow PSNR vs input is ~13 dB at 256 for fp8 and for full bf16 alike, and ~29 dB at 512 for all modes: the failure is FLUX-Fill behaviour at 256x256, not quantization."
+}

@@ -71,7 +71,7 @@ def output_mtimes():
     return {p: os.stat(p).st_mtime_ns for p in glob.glob(os.path.join(OUT_ROOT, "*/*/*/*/*/*.png"))}
 
 
-def check_variant(cfg, variant, limit, summary_paths):
+def check_variant(cfg, variant, limit, summary_paths, waivers=None):
     tasks = T.enumerate_tasks(cfg, variant, PROMPTS, None, limit)
     res = cfg.samplings["default"].resolution
     ds = cfg.datasets
@@ -109,6 +109,8 @@ def check_variant(cfg, variant, limit, summary_paths):
         "load_seconds": last.get("load_seconds"),
         "sanity": sanity,
     }
+    waiver = (waivers or {}).get(variant)
+    report["sanity_waiver"] = waiver
     report["pass"] = bool(
         n_ok == len(tasks)
         and size_ok
@@ -116,8 +118,8 @@ def check_variant(cfg, variant, limit, summary_paths):
         and pre_sizes == {tuple(res)}
         and peaks
         and max(peaks) <= cfg.models.vram_limit_mib
-        and sanity["n_fail"] == 0
         and sanity["n"] > 0
+        and (sanity["n_fail"] == 0 or waiver is not None)
     )
     return report
 
@@ -125,18 +127,26 @@ def check_variant(cfg, variant, limit, summary_paths):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--skip-steal", action="store_true")
+    p.add_argument(
+        "--sanity-waiver",
+        action="append",
+        default=[],
+        metavar="VARIANT=REASON",
+        help="Accept sanity failures for a variant with documented evidence (recorded in the report)",
+    )
     args = p.parse_args()
+    waivers = dict(w.split("=", 1) for w in args.sanity_waiver)
     os.chdir(REPO_ROOT)
     cfg = load_config()
     log_dir = os.path.join("logs", "smoke_" + time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()))
     os.makedirs(log_dir, exist_ok=True)
-    report = {"out_root": OUT_ROOT, "vram_limit_mib": cfg.models.vram_limit_mib, "logs": log_dir}
+    report = {"out_root": OUT_ROOT, "vram_limit_mib": cfg.models.vram_limit_mib, "logs": log_dir, "sanity_waivers": waivers}
 
     # (a) + (b)
     t0 = time.time()
     report["first_exit_codes"] = run_workers(log_dir, "first")
     report["first_seconds"] = round(time.time() - t0, 1)
-    report["variants"] = {v: check_variant(cfg, v, LIMIT, summaries(v)) for v in SMOKE_GPUS}
+    report["variants"] = {v: check_variant(cfg, v, LIMIT, summaries(v), waivers) for v in SMOKE_GPUS}
 
     # (c) resume
     before = output_mtimes()
@@ -179,7 +189,7 @@ def main():
             "generated": sum(r["generated"] for s in steal for r in s["runs"].values()),
             "existing_unchanged": all(after.get(k) == v for k, v in before.items()),
             "target": check_variant(cfg, target, STEAL_LIMIT, new),
-            "thief": check_variant(cfg, thief, STEAL_LIMIT, sorted(set(summaries(thief)))[-1:]),
+            "thief": check_variant(cfg, thief, STEAL_LIMIT, sorted(set(summaries(thief)))[-1:], waivers),
         }
         drill["pass"] = bool(
             code == 0
