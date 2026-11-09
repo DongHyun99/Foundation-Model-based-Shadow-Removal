@@ -55,7 +55,8 @@ def main():
             rc_missing_keys = None
             if os.path.exists(rc_path):
                 rc = yaml.safe_load(open(rc_path))
-                rc_missing_keys = [k for k in REQUIRED_KEYS if rc.get(k) in (None, "", {})]
+                # prompt_text may legitimately be "" (prompt i0); a key is missing only when absent or null/empty dict.
+                rc_missing_keys = [k for k in REQUIRED_KEYS if rc.get(k) is None or rc.get(k) == {}]
             runs[rel] = {
                 "expected": len(ts),
                 "raw": raw,

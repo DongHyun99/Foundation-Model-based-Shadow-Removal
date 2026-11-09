@@ -1,0 +1,161 @@
+{
+  "runs": {
+    "FLUX.1-Fill-dev/i0/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Fill-dev/i1/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Fill-dev/i2/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Fill-dev/i3/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Kontext-dev/e1/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Kontext-dev/e2/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Kontext-dev/e3/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Kontext-dev/e4/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Edit-2509/e1/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Edit-2509/e2/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Edit-2509/e3/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Edit-2509/e4/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Inpaint/i0/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Inpaint/i1/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Inpaint/i2/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Inpaint/i3/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    }
+  },
+  "total": {
+    "complete": true,
+    "composite": 16528,
+    "expected_pngs": 33056,
+    "expected_tasks": 16528,
+    "failed": 0,
+    "missing_tasks": 0,
+    "png_files_on_disk": 33056,
+    "present_pngs": 33056,
+    "raw": 16528,
+    "run_configs_ok": 16,
+    "runs": 16
+  }
+}
