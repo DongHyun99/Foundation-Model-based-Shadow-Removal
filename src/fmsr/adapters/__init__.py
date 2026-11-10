@@ -7,6 +7,8 @@ ADAPTERS = {
     "flux_kontext": ("fmsr.adapters.flux_kontext", "FluxKontextAdapter"),
     "qwen_inpaint": ("fmsr.adapters.qwen_inpaint", "QwenInpaintAdapter"),
     "qwen_edit_plus": ("fmsr.adapters.qwen_edit_plus", "QwenEditPlusAdapter"),
+    "flux_kontext_inpaint": ("fmsr.adapters.flux_kontext_inpaint", "FluxKontextInpaintAdapter"),
+    "qwen_edit_plus_mask": ("fmsr.adapters.qwen_edit_plus", "QwenEditPlusMaskAdapter"),
 }
 
 

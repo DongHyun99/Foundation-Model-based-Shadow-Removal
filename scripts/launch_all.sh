@@ -3,13 +3,14 @@
 # `run.py --pick-next` which variant still has the most weighted work and relaunches on it.
 # One model per process lifetime; crash -> relaunch the same variant up to 3 times.
 #
-# Env overrides (drills): GPU_MAP="0:FLUX.1-Fill-dev 1:..." OUT_ROOT PROMPTS SAMPLINGS LIMIT_PER_DATASET
-#                         MIN_REMAINING STAGGER_S FOREGROUND=1 (wait for all supervisors)
+# Env overrides: VARIANTS="A B" (variants to run; GPU_MAP and work stealing are limited to them; required
+#                when variants share home GPUs) GPU_MAP="0:FLUX.1-Fill-dev 1:..." OUT_ROOT PROMPTS SAMPLINGS
+#                LIMIT_PER_DATASET MIN_REMAINING STAGGER_S FOREGROUND=1 (wait for all supervisors)
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
 export OUT_ROOT="${OUT_ROOT:-outputs}"
-export PROMPTS="${PROMPTS:-}" SAMPLINGS="${SAMPLINGS:-}" LIMIT_PER_DATASET="${LIMIT_PER_DATASET:-}" MIN_REMAINING="${MIN_REMAINING:-}"
+export VARIANTS="${VARIANTS:-}" PROMPTS="${PROMPTS:-}" SAMPLINGS="${SAMPLINGS:-}" LIMIT_PER_DATASET="${LIMIT_PER_DATASET:-}" MIN_REMAINING="${MIN_REMAINING:-}"
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 STAGGER_S="${STAGGER_S:-60}"
 PY=venv/bin/python
@@ -17,10 +18,17 @@ LOG_DIR="logs/$(date -u +%Y%m%dT%H%M%SZ)"
 
 if [ -z "${GPU_MAP:-}" ]; then
   GPU_MAP="$($PY - <<'EOF'
+import os
 from fmsr.config import load_models
-print(" ".join(f"{g}:{n}" for n, v in load_models().variants.items() for g in v.gpus))
+wanted = os.environ["VARIANTS"].split()
+print(" ".join(f"{g}:{n}" for n, v in load_models().variants.items() if not wanted or n in wanted for g in v.gpus))
 EOF
 )"
+fi
+gpus="$(for e in $GPU_MAP; do echo "${e%%:*}"; done | sort)"
+if [ -n "$(echo "$gpus" | uniq -d)" ]; then
+  echo "launch_all: a GPU is mapped twice in GPU_MAP=$GPU_MAP; set VARIANTS or GPU_MAP" >&2
+  exit 1
 fi
 
 if pgrep -f "scripts/run.py --variant" >/dev/null; then

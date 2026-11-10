@@ -1,0 +1,54 @@
+{
+  "end_utc": "2026-11-10T04:52:23.744975+00:00",
+  "exit_code": 3,
+  "filters": {
+    "limit_per_dataset": 2,
+    "prompts": [
+      "e1",
+      "m1"
+    ],
+    "samplings": [
+      "default"
+    ]
+  },
+  "gen_seconds": 187.98494029045105,
+  "gpu": 1,
+  "home_variant": "Qwen-Image-Edit-2509-Mask",
+  "is_steal": false,
+  "load_seconds": 26.041869163513184,
+  "mean_s_per_img": 31.33082338174184,
+  "pid": 850091,
+  "preprocess_sizes": [
+    [
+      256,
+      256
+    ]
+  ],
+  "runs": {
+    "m1/default": {
+      "failed": 0,
+      "generated": 6,
+      "skipped": 0
+    }
+  },
+  "sanity": {
+    "failures": [],
+    "n": 6,
+    "n_fail": 0,
+    "ns_psnr_min": 23.140303540017037,
+    "std_min": 33.91573348348585
+  },
+  "start_utc": "2026-11-10T04:48:49.310592+00:00",
+  "target_variant": "Qwen-Image-Edit-2509-Mask",
+  "vram": {
+    "interval_s": 0.05,
+    "nvml_baseline_mib": 450.7,
+    "nvml_peak_mib": 18446.8,
+    "nvml_total_mib": 24564.0,
+    "phase_peaks_mib": {
+      "generate": 18446.8,
+      "load": 17950.8
+    },
+    "torch_max_reserved_mib": 17728.0
+  }
+}

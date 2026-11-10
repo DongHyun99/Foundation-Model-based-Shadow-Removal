@@ -8,6 +8,7 @@ import yaml
 from fmsr.imageio import RESAMPLE
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+KINDS = ("inpaint", "edit", "edit_mask")
 CONFIG_DIR = REPO_ROOT / "configs"
 
 
@@ -21,7 +22,7 @@ class Variant:
     name: str
     hf_repo: str
     adapter: str
-    kind: str  # "inpaint" | "edit"
+    kind: str  # prompt set: "inpaint" | "edit" | "edit_mask" (mask passed as a second image)
     gpus: tuple
     cost_weight: float
     min_remaining: int
@@ -38,8 +39,8 @@ def load_models(path=CONFIG_DIR / "models.yaml"):
     raw = _read_yaml(path)
     variants = {}
     for name, v in raw["variants"].items():
-        if v["kind"] not in ("inpaint", "edit"):
-            raise ValueError(f"{name}: kind must be inpaint or edit, got {v['kind']!r}")
+        if v["kind"] not in KINDS:
+            raise ValueError(f"{name}: kind must be one of {KINDS}, got {v['kind']!r}")
         variants[name] = Variant(
             name=name,
             hf_repo=v["hf_repo"],
@@ -58,7 +59,7 @@ def load_prompts(path=CONFIG_DIR / "prompts.yaml"):
     raw = _read_yaml(path)
     seen = set()
     out = {}
-    for kind in ("inpaint", "edit"):
+    for kind in KINDS:
         prompts = {str(k): ("" if v is None else str(v)) for k, v in raw[kind].items()}
         dup = seen & prompts.keys()
         if dup:
@@ -166,6 +167,8 @@ class Config:
         prompts = self.prompts_for(variant_name)
         pids = list(prompts) if prompt_ids is None else [p for p in prompt_ids if p in prompts]
         sids = list(self.samplings) if sampling_ids is None else list(sampling_ids)
+        # A sampling ID applies only to the variants it defines parameters for.
+        sids = [s for s in sids if variant_name in self.samplings[s].per_variant]
         return [Run(variant, pid, prompts[pid], self.samplings[sid]) for pid in pids for sid in sids]
 
 

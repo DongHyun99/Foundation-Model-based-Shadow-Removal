@@ -9,3 +9,9 @@ edit:
   e2: "Remove all shadows from the image while keeping everything else exactly the same."
   e3: "Relight the shadowed region so that it matches the surrounding illumination, preserving texture and color."
   e4: "Make the image shadow-free with uniform lighting."
+# Qwen-Image-Edit-2509 with the binary shadow mask as Picture 2 (white = shadow); m1-m4 mirror e1-e4.
+edit_mask:
+  m1: "Remove the shadow in Picture 1. Picture 2 is a mask whose white area marks the shadow."
+  m2: "Remove all shadows from Picture 1 while keeping everything else exactly the same. The white area of Picture 2 marks the shadows."
+  m3: "Relight the region of Picture 1 marked white in Picture 2 so that it matches the surrounding illumination, preserving texture and color."
+  m4: "Make Picture 1 shadow-free with uniform lighting. Picture 2 is the shadow mask (white = shadow)."

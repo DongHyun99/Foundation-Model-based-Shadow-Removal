@@ -47,4 +47,28 @@ variants:
       transformer: {backend: bitsandbytes_4bit, bnb_4bit_quant_type: nf4, bnb_4bit_compute_dtype: bfloat16, llm_int8_skip_modules: [transformer_blocks.0.img_mod]}
       text_encoder: {backend: transformers_bitsandbytes_4bit, bnb_4bit_quant_type: nf4, bnb_4bit_compute_dtype: bfloat16}
       vae: bf16
+  # Mask-conditioned variants: same weights/quantization as their base variant, mask as an extra input.
+  FLUX.1-Kontext-dev-Mask:
+    hf_repo: black-forest-labs/FLUX.1-Kontext-dev
+    adapter: flux_kontext_inpaint
+    kind: edit
+    gpus: [0, 1, 2]
+    cost_weight: 28
+    min_remaining: 60
+    quantization:
+      transformer: {method: layerwise_casting, storage_dtype: float8_e4m3fn, compute_dtype: bfloat16, skip_patterns: diffusers_default}
+      text_encoder: bf16
+      text_encoder_2: bf16
+      vae: bf16
+  Qwen-Image-Edit-2509-Mask:
+    hf_repo: Qwen/Qwen-Image-Edit-2509
+    adapter: qwen_edit_plus_mask
+    kind: edit_mask
+    gpus: [3, 4, 5, 6, 7]
+    cost_weight: 100
+    min_remaining: 10
+    quantization:
+      transformer: {backend: bitsandbytes_4bit, bnb_4bit_quant_type: nf4, bnb_4bit_compute_dtype: bfloat16, llm_int8_skip_modules: [transformer_blocks.0.img_mod]}
+      text_encoder: {backend: transformers_bitsandbytes_4bit, bnb_4bit_quant_type: nf4, bnb_4bit_compute_dtype: bfloat16}
+      vae: bf16
 vram_limit_mib: 23000

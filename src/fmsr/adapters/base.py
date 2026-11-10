@@ -10,14 +10,14 @@ from fmsr.config import REPO_ROOT
 DOWNLOAD_REPORT = REPO_ROOT / "reports" / "download.json"
 
 
-def pinned_revision(variant_name):
-    """HF snapshot revision recorded by scripts/download.py; outputs are tied to it."""
+def pinned_revision(hf_repo):
+    """HF snapshot revision recorded by scripts/download.py; variants sharing a repo share the revision."""
     if not DOWNLOAD_REPORT.exists():
         raise FileNotFoundError(f"{DOWNLOAD_REPORT} missing: run scripts/download.py first")
-    report = json.loads(DOWNLOAD_REPORT.read_text())
-    if variant_name not in report:
-        raise KeyError(f"{variant_name} not in {DOWNLOAD_REPORT}: run scripts/download.py --variants {variant_name!r}")
-    return report[variant_name]["revision"]
+    revisions = {e["revision"] for e in json.loads(DOWNLOAD_REPORT.read_text()).values() if e["hf_repo"] == hf_repo}
+    if len(revisions) != 1:
+        raise KeyError(f"{hf_repo}: expected one pinned revision in {DOWNLOAD_REPORT}, found {sorted(revisions)}")
+    return revisions.pop()
 
 
 class Adapter(ABC):
@@ -28,7 +28,7 @@ class Adapter(ABC):
     def __init__(self, variant, device="cuda", on_phase=None):
         self.variant = variant
         self.device = torch.device(device)
-        self.revision = pinned_revision(variant.name)
+        self.revision = pinned_revision(variant.hf_repo)
         self.on_phase = on_phase or (lambda phase: None)
         self.pipe = None
         self.preprocess_sizes = []

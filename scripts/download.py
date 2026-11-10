@@ -1,7 +1,8 @@
 """Download the diffusers-format weights for every variant and record resolved revisions.
 
 Only the diffusers component folders are fetched (root single-file checkpoints are skipped).
-Writes reports/download.json with {variant: {hf_repo, revision, local_path}}.
+Writes reports/download.json with {variant: {hf_repo, revision, local_path}}. A repo that is already pinned
+(e.g. a mask-conditioned variant reusing a base variant's weights) keeps its recorded revision.
 """
 
 import argparse
@@ -41,7 +42,10 @@ def main():
     api = HfApi()
     for name in names:
         repo = variants[name].hf_repo
-        revision = api.model_info(repo).sha
+        pinned = {e["revision"] for e in report.values() if e["hf_repo"] == repo}
+        if len(pinned) > 1:
+            raise RuntimeError(f"{repo}: conflicting pinned revisions {sorted(pinned)} in {args.out}")
+        revision = pinned.pop() if pinned else api.model_info(repo).sha
         print(f"downloading {name}: {repo}@{revision}", flush=True)
         path = snapshot_download(repo, revision=revision, allow_patterns=ALLOW_PATTERNS, max_workers=args.max_workers)
         report[name] = {"hf_repo": repo, "revision": revision, "local_path": path}

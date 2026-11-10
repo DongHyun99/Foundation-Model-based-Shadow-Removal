@@ -37,7 +37,11 @@ def test_configs_load_and_match_dataset_counts():
         "FLUX.1-Kontext-dev",
         "Qwen-Image-Inpaint",
         "Qwen-Image-Edit-2509",
+        "FLUX.1-Kontext-dev-Mask",
+        "Qwen-Image-Edit-2509-Mask",
     ]
+    assert [r.prompt_id for r in cfg.runs("Qwen-Image-Edit-2509-Mask")] == ["m1", "m2", "m3", "m4"]
+    assert {r.sampling.id for r in cfg.runs("FLUX.1-Kontext-dev-Mask")} == {"default"}  # r512 does not define it
     assert cfg.prompts["inpaint"]["i0"] == ""
     assert len(cfg.runs("FLUX.1-Fill-dev")) == 4 * len(cfg.samplings)
     assert [r.prompt_id for r in cfg.runs("Qwen-Image-Edit-2509", sampling_ids=["default"])] == ["e1", "e2", "e3", "e4"]

@@ -33,13 +33,16 @@ class QwenEditPlusAdapter(QwenAdapter):
     def resize_overrides(self, params, resolution):
         return {"VAE_IMAGE_SIZE": params["vae_image_area"], "CONDITION_IMAGE_SIZE": params["condition_area"]}
 
+    def condition_images(self, image, mask_l):
+        return [image]
+
     def generate(self, image, mask_l, prompt_id, prompt_text, params, resolution, generator):
         h, w = resolution
         if params["vae_image_area"] != h * w:
             raise ValueError(f"Qwen-Edit VAE conditioning must match {h}x{w}: got area {params['vae_image_area']}")
         with qwen_edit_sizes(params["vae_image_area"], params["condition_area"]):
             out = self.pipe(
-                image=[image],
+                image=self.condition_images(image, mask_l),
                 prompt=prompt_text,
                 negative_prompt=params["negative_prompt"],
                 true_cfg_scale=params["true_cfg_scale"],
@@ -50,3 +53,10 @@ class QwenEditPlusAdapter(QwenAdapter):
                 generator=generator,
             ).images[0]
         return self._check_output(out, resolution)
+
+
+class QwenEditPlusMaskAdapter(QwenEditPlusAdapter):
+    """Qwen-Image-Edit-2509 with the binary shadow mask as Picture 2 (white = shadow, RGB)."""
+
+    def condition_images(self, image, mask_l):
+        return [image, mask_l.convert("RGB")]

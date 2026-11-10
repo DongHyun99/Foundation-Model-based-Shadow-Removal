@@ -1,0 +1,56 @@
+{
+  "end_utc": "2026-11-10T04:50:07.741213+00:00",
+  "exit_code": 3,
+  "filters": {
+    "limit_per_dataset": 2,
+    "prompts": [
+      "e1",
+      "m1"
+    ],
+    "samplings": [
+      "default"
+    ]
+  },
+  "gen_seconds": 59.15116477012634,
+  "gpu": 0,
+  "home_variant": "FLUX.1-Kontext-dev-Mask",
+  "is_steal": false,
+  "load_seconds": 18.863587141036987,
+  "mean_s_per_img": 9.858527461687723,
+  "pid": 850090,
+  "preprocess_sizes": [
+    [
+      256,
+      256
+    ]
+  ],
+  "runs": {
+    "e1/default": {
+      "failed": 0,
+      "generated": 6,
+      "skipped": 0
+    }
+  },
+  "sanity": {
+    "failures": [],
+    "n": 6,
+    "n_fail": 0,
+    "ns_psnr_min": 28.815509670157915,
+    "std_min": 27.071839432359187
+  },
+  "start_utc": "2026-11-10T04:48:49.318600+00:00",
+  "target_variant": "FLUX.1-Kontext-dev-Mask",
+  "vram": {
+    "interval_s": 0.05,
+    "nvml_baseline_mib": 450.7,
+    "nvml_peak_mib": 15682.8,
+    "nvml_total_mib": 24564.0,
+    "phase_peaks_mib": {
+      "encode": 10158.8,
+      "generate": 15682.8,
+      "load": 9904.8,
+      "load_transformer": 15324.8
+    },
+    "torch_max_reserved_mib": 14966.0
+  }
+}

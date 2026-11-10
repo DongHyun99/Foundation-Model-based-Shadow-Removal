@@ -72,6 +72,13 @@ key with all image extensions stripped, like `../measure_lpips.py`.
   Fill 50 steps / guidance 30; Kontext 28 steps / guidance 2.5; Qwen-Inpaint 50 steps / true CFG 4.0 /
   strength 1.0 / negative `" "`; Qwen-Edit-2509 40 steps / true CFG 4.0 / guidance 1.0 / negative `" "`.
   Other resolutions or seeds are added as new sampling IDs.
+- Mask-conditioned variants (same weights, revision and quantization as their base variant):
+  `FLUX.1-Kontext-dev-Mask` uses `FluxKontextInpaintPipeline` (full image as in-context condition, mask
+  region denoised from strength 1.0, the rest blended back each step; prompts e1-e4).
+  `Qwen-Image-Edit-2509-Mask` passes the binary mask as a second image (`image=[shadow, mask]`, Picture 2,
+  white = shadow) with prompts m1-m4 (`edit_mask` in `configs/prompts.yaml`). Run them with
+  `VARIANTS="FLUX.1-Kontext-dev-Mask Qwen-Image-Edit-2509-Mask" scripts/launch_all.sh` (their home GPUs
+  overlap the base variants', so `VARIANTS` is required).
 - Sampling ID `r512`: same parameters as `default`, but inference runs at 512x512. The 256x256 input is
   upsampled (image bicubic, mask nearest so it stays binary) and the raw output is downsampled back to
   256x256 (bicubic) before saving, so raw/composite PNGs and evaluation stay at the dataset size

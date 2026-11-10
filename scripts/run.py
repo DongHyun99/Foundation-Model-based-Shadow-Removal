@@ -47,6 +47,8 @@ def parse_args():
     p.add_argument("--limit-per-dataset", type=int, default=env_int("LIMIT_PER_DATASET"))
     p.add_argument("--pick-next", action="store_true")
     p.add_argument("--exclude", nargs="*", default=[])
+    p.add_argument("--variants", nargs="*", default=os.environ.get("VARIANTS", "").split() or None,
+                   help="--pick-next candidates (default: every variant)")
     p.add_argument("--min-remaining", type=int, default=env_int("MIN_REMAINING"))
     p.add_argument("--stale-after-s", type=float, default=T.DEFAULT_STALE_AFTER_S)
     args = p.parse_args()
@@ -62,6 +64,8 @@ def variant_tasks(cfg, variant, args):
 def pick_next(cfg, args):
     remaining, weights, mins = {}, {}, {}
     for name, v in cfg.models.variants.items():
+        if args.variants and name not in args.variants:
+            continue
         remaining[name] = T.remaining_unclaimed(args.out_root, variant_tasks(cfg, name, args), args.stale_after_s)
         weights[name] = v.cost_weight
         mins[name] = args.min_remaining or v.min_remaining
