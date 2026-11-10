@@ -21,7 +21,7 @@ from fmsr import tasks as T
 from fmsr.adapters import get_adapter_class
 from fmsr.config import load_config
 from fmsr.data import load_mask_bin, load_rgb
-from fmsr.imageio import atomic_save_png, composite
+from fmsr.imageio import atomic_save_png, composite, to_model_size, to_native_size
 from fmsr.runinfo import atomic_write_json, build_run_config, write_run_config
 from fmsr.sanity import check_output
 from fmsr.vram import VramSampler, gpu_info
@@ -179,12 +179,12 @@ def work(cfg, args):
         try:
             image = load_rgb(ds.dir(task.test, "shadow") / task.image)
             mask = load_mask_bin(ds.dir(task.test, "mask") / task.image, ds.mask_threshold)
-            if image.size != tuple(reversed(run.sampling.resolution)):
-                raise ValueError(f"input size {image.size} != sampling resolution {run.sampling.resolution}")
+            model_image, model_mask = to_model_size(image, mask, run.sampling.resolution, run.sampling.io_resample)
             generator = torch.Generator(run.sampling.generator_device).manual_seed(run.sampling.seed)
             t1 = time.time()
-            raw = adapter.generate(image, mask, task.prompt_id, run.prompt_text, run.sampling.params(args.variant), run.sampling.resolution, generator)
+            raw = adapter.generate(model_image, model_mask, task.prompt_id, run.prompt_text, run.sampling.params(args.variant), run.sampling.resolution, generator)
             summary.data["gen_seconds"] += time.time() - t1
+            raw = to_native_size(raw, image.size, run.sampling.io_resample)
             atomic_save_png(raw, T.raw_path(args.out_root, task))
             atomic_save_png(composite(raw, image, mask), T.composite_path(args.out_root, task))
             summary.add_sanity(task, check_output(raw, image, mask))

@@ -28,14 +28,14 @@ from fmsr.data import load_mask_bin, load_rgb
 OUT_ROOT = "outputs/_smoke"
 SMOKE_GPUS = {"FLUX.1-Fill-dev": 0, "FLUX.1-Kontext-dev": 2, "Qwen-Image-Inpaint": 4, "Qwen-Image-Edit-2509": 6}
 PROMPTS = ["i1", "e1"]
+SAMPLING = "default"
 LIMIT = 2
 STEAL_LIMIT = 4
 PY = str(REPO_ROOT / "venv/bin/python")
 
 
 def env(**extra):
-    e = dict(os.environ, OUT_ROOT=OUT_ROOT, PROMPTS=" ".join(PROMPTS), LIMIT_PER_DATASET=str(LIMIT))
-    e.pop("SAMPLINGS", None)
+    e = dict(os.environ, OUT_ROOT=OUT_ROOT, PROMPTS=" ".join(PROMPTS), SAMPLINGS=SAMPLING, LIMIT_PER_DATASET=str(LIMIT))
     e.pop("MIN_REMAINING", None)
     e.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
     e.update(extra)
@@ -72,8 +72,8 @@ def output_mtimes():
 
 
 def check_variant(cfg, variant, limit, summary_paths, waivers=None):
-    tasks = T.enumerate_tasks(cfg, variant, PROMPTS, None, limit)
-    res = cfg.samplings["default"].resolution
+    tasks = T.enumerate_tasks(cfg, variant, PROMPTS, [SAMPLING], limit)
+    res = cfg.samplings[SAMPLING].resolution
     ds = cfg.datasets
     n_ok, size_ok, outside_equal = 0, True, True
     for t in tasks:

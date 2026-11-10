@@ -1,4 +1,4 @@
-"""Atomic PNG writes and mask compositing."""
+"""Atomic PNG writes, model-size resampling and mask compositing."""
 
 import os
 from pathlib import Path
@@ -18,6 +18,29 @@ def atomic_save_png(img, path):
     finally:
         if tmp.exists():
             tmp.unlink()
+
+
+RESAMPLE = {"nearest": Image.NEAREST, "bicubic": Image.BICUBIC, "lanczos": Image.LANCZOS}
+
+
+def to_model_size(image, mask_l, resolution, io_resample):
+    """Image and binary mask at the inference `resolution` (height, width); unchanged if already that size."""
+    size = (resolution[1], resolution[0])
+    if image.size == size:
+        return image, mask_l
+    if io_resample is None:
+        raise ValueError(f"input size {image.size} != sampling resolution {resolution} and no io_resample configured")
+    return (
+        image.resize(size, RESAMPLE[io_resample["image_up"]]),
+        mask_l.resize(size, RESAMPLE[io_resample["mask_up"]]),
+    )
+
+
+def to_native_size(raw, size, io_resample):
+    """Raw model output resized back to the dataset image `size` (width, height)."""
+    if raw.size == size:
+        return raw
+    return raw.resize(size, RESAMPLE[io_resample["output_down"]])
 
 
 def composite(generated, original, mask_l):
