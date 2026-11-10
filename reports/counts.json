@@ -36,6 +36,42 @@
       "run_config": true,
       "run_config_missing_keys": []
     },
+    "FLUX.1-Kontext-dev-Mask/e1/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Kontext-dev-Mask/e2/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Kontext-dev-Mask/e3/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "FLUX.1-Kontext-dev-Mask/e4/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
     "FLUX.1-Kontext-dev/e1/default": {
       "composite": 1033,
       "expected": 1033,
@@ -64,6 +100,42 @@
       "run_config_missing_keys": []
     },
     "FLUX.1-Kontext-dev/e4/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Edit-2509-Mask/m1/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Edit-2509-Mask/m2/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Edit-2509-Mask/m3/default": {
+      "composite": 1033,
+      "expected": 1033,
+      "failed": [],
+      "missing_tasks": 0,
+      "raw": 1033,
+      "run_config": true,
+      "run_config_missing_keys": []
+    },
+    "Qwen-Image-Edit-2509-Mask/m4/default": {
       "composite": 1033,
       "expected": 1033,
       "failed": [],
@@ -162,6 +234,14 @@
       "sanity_n": 4132,
       "std_min": 0.7192269954578631
     },
+    "FLUX.1-Kontext-dev-Mask": {
+      "generated": 4132,
+      "ns_psnr_min": 17.279046486224075,
+      "sanity_fail": 0,
+      "sanity_fail_rate": 0.0,
+      "sanity_n": 4132,
+      "std_min": 10.323064619366214
+    },
     "Qwen-Image-Edit-2509": {
       "generated": 4132,
       "ns_psnr_min": 4.785950276912097,
@@ -169,6 +249,14 @@
       "sanity_fail_rate": 0.22120038722168442,
       "sanity_n": 4132,
       "std_min": 0.9327558850243356
+    },
+    "Qwen-Image-Edit-2509-Mask": {
+      "generated": 4132,
+      "ns_psnr_min": 2.232188666153478,
+      "sanity_fail": 950,
+      "sanity_fail_rate": 0.22991287512100678,
+      "sanity_n": 4132,
+      "std_min": 12.340119942894656
     },
     "Qwen-Image-Inpaint": {
       "generated": 4132,
@@ -181,15 +269,15 @@
   },
   "total": {
     "complete": true,
-    "composite": 16528,
-    "expected_pngs": 33056,
-    "expected_tasks": 16528,
+    "composite": 24792,
+    "expected_pngs": 49584,
+    "expected_tasks": 24792,
     "failed": 0,
     "missing_tasks": 0,
-    "png_files_on_disk": 33056,
-    "present_pngs": 33056,
-    "raw": 16528,
-    "run_configs_ok": 16,
-    "runs": 16
+    "png_files_on_disk": 49584,
+    "present_pngs": 49584,
+    "raw": 24792,
+    "run_configs_ok": 24,
+    "runs": 24
   }
 }

@@ -1,6 +1,6 @@
 {
-  "end_utc": null,
-  "exit_code": null,
+  "end_utc": "2026-11-10T10:53:41.674875+00:00",
+  "exit_code": 3,
   "filters": {
     "limit_per_dataset": null,
     "prompts": null,
@@ -8,12 +8,12 @@
       "default"
     ]
   },
-  "gen_seconds": 9401.269672393799,
+  "gen_seconds": 21453.839020729065,
   "gpu": 3,
   "home_variant": "Qwen-Image-Edit-2509-Mask",
   "is_steal": false,
   "load_seconds": 26.019071102142334,
-  "mean_s_per_img": 31.337565574645996,
+  "mean_s_per_img": 31.365261726212083,
   "pid": 859850,
   "preprocess_sizes": [
     [
@@ -24,8 +24,23 @@
   "runs": {
     "m1/default": {
       "failed": 0,
-      "generated": 300,
-      "skipped": 0
+      "generated": 531,
+      "skipped": 207
+    },
+    "m2/default": {
+      "failed": 0,
+      "generated": 62,
+      "skipped": 729
+    },
+    "m3/default": {
+      "failed": 0,
+      "generated": 40,
+      "skipped": 789
+    },
+    "m4/default": {
+      "failed": 0,
+      "generated": 51,
+      "skipped": 660
     }
   },
   "sanity": {
@@ -171,22 +186,22 @@
         "task": "Qwen-Image-Edit-2509-Mask/m1/default/AISTD/115-5.png"
       }
     ],
-    "n": 300,
-    "n_fail": 52,
-    "ns_psnr_min": 7.081604382898083,
-    "std_min": 13.15906434293357
+    "n": 684,
+    "n_fail": 155,
+    "ns_psnr_min": 3.4755436481264343,
+    "std_min": 12.703894196784509
   },
   "start_utc": "2026-11-10T04:55:04.043974+00:00",
   "target_variant": "Qwen-Image-Edit-2509-Mask",
   "vram": {
     "interval_s": 0.05,
     "nvml_baseline_mib": 450.7,
-    "nvml_peak_mib": 18446.8,
+    "nvml_peak_mib": 18448.8,
     "nvml_total_mib": 24564.0,
     "phase_peaks_mib": {
-      "generate": 18446.8,
+      "generate": 18448.8,
       "load": 17930.8
     },
-    "torch_max_reserved_mib": 17728.0
+    "torch_max_reserved_mib": 17730.0
   }
 }

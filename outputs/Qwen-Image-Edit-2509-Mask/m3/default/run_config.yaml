@@ -40,7 +40,6 @@ generator_device: cpu
 resolution:
 - 256
 - 256
-io_resample: null
 resize_overrides:
   VAE_IMAGE_SIZE: 65536
   CONDITION_IMAGE_SIZE: 147456

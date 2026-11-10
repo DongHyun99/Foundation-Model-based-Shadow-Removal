@@ -1,6 +1,6 @@
 {
-  "end_utc": null,
-  "exit_code": null,
+  "end_utc": "2026-11-10T08:41:08.690318+00:00",
+  "exit_code": 3,
   "filters": {
     "limit_per_dataset": null,
     "prompts": null,
@@ -8,12 +8,12 @@
       "default"
     ]
   },
-  "gen_seconds": 9752.627646446228,
+  "gen_seconds": 13537.33170247078,
   "gpu": 1,
   "home_variant": "FLUX.1-Kontext-dev-Mask",
   "is_steal": false,
   "load_seconds": 17.734699249267578,
-  "mean_s_per_img": 9.752627646446228,
+  "mean_s_per_img": 9.760152633360331,
   "pid": 858071,
   "preprocess_sizes": [
     [
@@ -22,20 +22,30 @@
     ]
   ],
   "runs": {
+    "e1/default": {
+      "failed": 0,
+      "generated": 0,
+      "skipped": 1033
+    },
     "e2/default": {
       "failed": 0,
-      "generated": 689,
-      "skipped": 0
+      "generated": 694,
+      "skipped": 329
     },
     "e3/default": {
       "failed": 0,
-      "generated": 311,
-      "skipped": 0
+      "generated": 688,
+      "skipped": 345
+    },
+    "e4/default": {
+      "failed": 0,
+      "generated": 5,
+      "skipped": 1022
     }
   },
   "sanity": {
     "failures": [],
-    "n": 1000,
+    "n": 1387,
     "n_fail": 0,
     "ns_psnr_min": 19.16063640603799,
     "std_min": 12.990111320174455

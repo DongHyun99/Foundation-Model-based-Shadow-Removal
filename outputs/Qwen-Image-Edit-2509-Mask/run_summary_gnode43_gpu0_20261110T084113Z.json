@@ -1,0 +1,207 @@
+{
+  "end_utc": "2026-11-10T10:53:37.183531+00:00",
+  "exit_code": 3,
+  "filters": {
+    "limit_per_dataset": null,
+    "prompts": null,
+    "samplings": [
+      "default"
+    ]
+  },
+  "gen_seconds": 7901.568447828293,
+  "gpu": 0,
+  "home_variant": "FLUX.1-Kontext-dev-Mask",
+  "is_steal": true,
+  "load_seconds": 28.57523465156555,
+  "mean_s_per_img": 32.12019694239144,
+  "pid": 1027933,
+  "preprocess_sizes": [
+    [
+      256,
+      256
+    ]
+  ],
+  "runs": {
+    "m1/default": {
+      "failed": 0,
+      "generated": 97,
+      "skipped": 645
+    },
+    "m2/default": {
+      "failed": 0,
+      "generated": 60,
+      "skipped": 733
+    },
+    "m3/default": {
+      "failed": 0,
+      "generated": 40,
+      "skipped": 792
+    },
+    "m4/default": {
+      "failed": 0,
+      "generated": 49,
+      "skipped": 665
+    }
+  },
+  "sanity": {
+    "failures": [
+      {
+        "finite": true,
+        "ns_psnr": 13.095185503258016,
+        "ok": false,
+        "std": 45.93174522330637,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/AISTD/133-20.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 11.84964828855827,
+        "ok": false,
+        "std": 52.99613433297571,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/AISTD/133-24.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 9.691721475931063,
+        "ok": false,
+        "std": 69.21439358980989,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/AISTD/96-6.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 14.107845244617875,
+        "ok": false,
+        "std": 64.41194844228136,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/AISTD/99-9.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 6.305920227199361,
+        "ok": false,
+        "std": 75.98681905779978,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/IMG_5475_1.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 5.319970902401575,
+        "ok": false,
+        "std": 52.68078365929312,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/IMG_5522.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 10.65678244326012,
+        "ok": false,
+        "std": 68.7996220835667,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/IMG_6197.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 10.5326262139476,
+        "ok": false,
+        "std": 52.77130072506399,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/IMG_6742.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 6.458225021062645,
+        "ok": false,
+        "std": 68.14965072264657,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/IMG_7006.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 10.398703424847294,
+        "ok": false,
+        "std": 86.02261225973778,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/_MG_3068.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 12.461894795162268,
+        "ok": false,
+        "std": 68.88030509300874,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/_MG_3637.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 11.831265023464182,
+        "ok": false,
+        "std": 65.30790776316785,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/_MG_3725.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 8.954756766668774,
+        "ok": false,
+        "std": 72.41492344125332,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/_MG_3965.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 12.663656589806852,
+        "ok": false,
+        "std": 55.560814023563424,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/_MG_4082.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 7.951533666079733,
+        "ok": false,
+        "std": 67.7800125951681,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/_MG_4534.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 7.548722773951275,
+        "ok": false,
+        "std": 69.64399671073286,
+        "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/_MG_4620.jpg"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 4.08716151546902,
+        "ok": false,
+        "std": 121.60988530458016,
+        "task": "Qwen-Image-Edit-2509-Mask/m2/default/AISTD/126-2.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 9.133552557530697,
+        "ok": false,
+        "std": 54.19168719718844,
+        "task": "Qwen-Image-Edit-2509-Mask/m2/default/AISTD/126-7.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 10.954046409226446,
+        "ok": false,
+        "std": 80.2765590935364,
+        "task": "Qwen-Image-Edit-2509-Mask/m2/default/AISTD/129-12.png"
+      },
+      {
+        "finite": true,
+        "ns_psnr": 8.721024709799249,
+        "ok": false,
+        "std": 76.02355032710327,
+        "task": "Qwen-Image-Edit-2509-Mask/m2/default/AISTD/130-13.png"
+      }
+    ],
+    "n": 246,
+    "n_fail": 64,
+    "ns_psnr_min": 4.08716151546902,
+    "std_min": 13.200891838572588
+  },
+  "start_utc": "2026-11-10T08:41:13.631346+00:00",
+  "target_variant": "Qwen-Image-Edit-2509-Mask",
+  "vram": {
+    "interval_s": 0.05,
+    "nvml_baseline_mib": 450.7,
+    "nvml_peak_mib": 18448.8,
+    "nvml_total_mib": 24564.0,
+    "phase_peaks_mib": {
+      "generate": 18448.8,
+      "load": 17930.8
+    },
+    "torch_max_reserved_mib": 17730.0
+  }
+}

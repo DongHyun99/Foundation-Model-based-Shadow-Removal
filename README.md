@@ -146,11 +146,21 @@ including raw outputs, SSIM, MAE and LPIPS, are in `results/metrics_summary.csv`
 | FLUX.1-Kontext-dev | e1: 5.49 / 19.09 / 2.94, 26.47 dB | e1: 10.98 / 24.12 / 5.25, 21.67 dB | e1: 19.52 / 28.55 / 16.34, 17.21 dB |
 | Qwen-Image-Inpaint | i2: 5.86 / 21.19 / 2.94, 25.26 dB | i2: 11.98 / 28.08 / 5.25, 19.95 dB | i2: 23.15 / 35.61 / 16.34, 16.08 dB |
 | Qwen-Image-Edit-2509 | e1: 8.15 / 35.92 / 2.94, 21.86 dB | e1: 15.11 / 41.26 / 5.25, 17.40 dB | e2: 23.05 / 37.99 / 16.34, 15.93 dB |
+| FLUX.1-Kontext-dev-Mask | e1: 5.89 / 21.77 / 2.94, 24.75 dB | e1: 11.28 / 25.73 / 5.25, 20.83 dB | e4: 19.24 / 28.18 / 16.34, 17.19 dB |
+| Qwen-Image-Edit-2509-Mask | m4: 10.04 / 45.38 / 2.94, 19.86 dB | m4: 15.70 / 43.60 / 5.25, 17.51 dB | m2: 20.30 / 30.57 / 16.34, 16.92 dB |
 
 NS is identical to the input for composites by construction. On WSRD (large, irregular masks) only
 Kontext matches or beats the input. Every variant generated exactly 4,132 images with no pipeline
 errors (no `.failed` tasks). Mean time per image on an A5000 at 256x256: Kontext 9.7 s, Fill 15.6 s,
-Qwen-Inpaint 17.3 s, Qwen-Edit-2509 20.9 s.
+Qwen-Inpaint 17.3 s, Qwen-Edit-2509 20.9 s, Kontext-Mask 9.9 s, Qwen-Edit-2509-Mask 31.3 s (trial).
+
+**Mask as an extra input.** Kontext-Mask keeps the non-shadow region of the raw output (0 raw sanity
+failures vs. 26.3%; e4 raw "RMSE" all on AISTD 41.7 -> 9.7) and lowers the shadow-region error for
+e2-e4 on every dataset, but for the best prompt e1 the shadow region gets slightly worse on AISTD/SRD
+(S 19.09 -> 21.77, 24.12 -> 25.73); on WSRD it is the only setup that beats the input (19.24 vs 19.63).
+Qwen-Edit-2509 with the mask as Picture 2 is worse on AISTD (S 35.9 -> 45.4, above the input's 38.1),
+about equal on SRD and better on WSRD (S 38.0 -> 30.6). Its prompts also differ (m1-m4 mention
+Picture 2), so this comparison is not a pure mask ablation.
 
 ### Raw-output sanity (reported, not gated)
 
@@ -165,6 +175,8 @@ a pipeline error. `scripts/verify_counts.py` aggregates the results into `report
 | FLUX.1-Kontext-dev | 1,088 / 4,132 (26.3%) | 1.56 dB | 0.72 |
 | Qwen-Image-Edit-2509 | 914 / 4,132 (22.1%) | 4.79 dB | 0.93 |
 | Qwen-Image-Inpaint | 32 / 4,132 (0.8%) | 11.85 dB | 9.42 |
+| FLUX.1-Kontext-dev-Mask | 0 / 4,132 (0.0%) | 17.28 dB | 10.32 |
+| Qwen-Image-Edit-2509-Mask | 950 / 4,132 (23.0%) | 2.23 dB | 12.34 |
 
 The edit models sometimes change the whole image: global tone shifts, or near-blank outputs. In the
 final QA scan, raw outputs with RGB std < 2 numbered 323 for Kontext, 4 for Qwen-Edit-2509 and 0 for the

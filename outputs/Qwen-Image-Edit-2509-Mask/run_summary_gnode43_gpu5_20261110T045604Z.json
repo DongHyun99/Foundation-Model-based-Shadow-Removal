@@ -1,6 +1,6 @@
 {
-  "end_utc": null,
-  "exit_code": null,
+  "end_utc": "2026-11-10T10:53:19.132360+00:00",
+  "exit_code": 3,
   "filters": {
     "limit_per_dataset": null,
     "prompts": null,
@@ -8,12 +8,12 @@
       "default"
     ]
   },
-  "gen_seconds": 9520.003908634186,
+  "gen_seconds": 21372.781893491745,
   "gpu": 5,
   "home_variant": "Qwen-Image-Edit-2509-Mask",
   "is_steal": false,
   "load_seconds": 26.08356475830078,
-  "mean_s_per_img": 31.733346362113952,
+  "mean_s_per_img": 31.75747681053751,
   "pid": 861072,
   "preprocess_sizes": [
     [
@@ -22,10 +22,25 @@
     ]
   ],
   "runs": {
+    "m1/default": {
+      "failed": 0,
+      "generated": 0,
+      "skipped": 1033
+    },
     "m2/default": {
       "failed": 0,
-      "generated": 300,
-      "skipped": 0
+      "generated": 414,
+      "skipped": 619
+    },
+    "m3/default": {
+      "failed": 0,
+      "generated": 210,
+      "skipped": 620
+    },
+    "m4/default": {
+      "failed": 0,
+      "generated": 49,
+      "skipped": 666
     }
   },
   "sanity": {
@@ -171,10 +186,10 @@
         "task": "Qwen-Image-Edit-2509-Mask/m2/default/SRD/_MG_3104.jpg"
       }
     ],
-    "n": 300,
-    "n_fail": 68,
-    "ns_psnr_min": 5.752399223311767,
-    "std_min": 20.085785678020954
+    "n": 673,
+    "n_fail": 127,
+    "ns_psnr_min": 2.252211979229803,
+    "std_min": 12.912174390291348
   },
   "start_utc": "2026-11-10T04:56:04.120504+00:00",
   "target_variant": "Qwen-Image-Edit-2509-Mask",

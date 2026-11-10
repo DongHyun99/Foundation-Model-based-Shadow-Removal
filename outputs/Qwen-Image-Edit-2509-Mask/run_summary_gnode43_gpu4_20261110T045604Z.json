@@ -1,6 +1,6 @@
 {
-  "end_utc": null,
-  "exit_code": null,
+  "end_utc": "2026-11-10T10:53:50.777150+00:00",
+  "exit_code": 3,
   "filters": {
     "limit_per_dataset": null,
     "prompts": null,
@@ -8,12 +8,12 @@
       "default"
     ]
   },
-  "gen_seconds": 9517.77937746048,
+  "gen_seconds": 21403.255769491196,
   "gpu": 4,
   "home_variant": "Qwen-Image-Edit-2509-Mask",
   "is_steal": false,
   "load_seconds": 26.72459363937378,
-  "mean_s_per_img": 31.725931258201598,
+  "mean_s_per_img": 31.75557235829554,
   "pid": 861071,
   "preprocess_sizes": [
     [
@@ -25,12 +25,22 @@
     "m1/default": {
       "failed": 0,
       "generated": 207,
-      "skipped": 0
+      "skipped": 826
     },
     "m2/default": {
       "failed": 0,
-      "generated": 93,
-      "skipped": 0
+      "generated": 376,
+      "skipped": 415
+    },
+    "m3/default": {
+      "failed": 0,
+      "generated": 41,
+      "skipped": 788
+    },
+    "m4/default": {
+      "failed": 0,
+      "generated": 50,
+      "skipped": 666
     }
   },
   "sanity": {
@@ -176,8 +186,8 @@
         "task": "Qwen-Image-Edit-2509-Mask/m1/default/SRD/_MG_6403.jpg"
       }
     ],
-    "n": 300,
-    "n_fail": 40,
+    "n": 674,
+    "n_fail": 158,
     "ns_psnr_min": 2.257321284570822,
     "std_min": 12.340119942894656
   },

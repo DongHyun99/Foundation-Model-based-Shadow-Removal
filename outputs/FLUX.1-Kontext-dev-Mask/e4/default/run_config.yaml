@@ -33,7 +33,6 @@ generator_device: cpu
 resolution:
 - 256
 - 256
-io_resample: null
 resize_overrides:
   _auto_resize: false
   max_area: 65536
