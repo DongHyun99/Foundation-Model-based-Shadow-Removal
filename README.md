@@ -103,10 +103,10 @@ model behaviour at the specified resolution, not quantization. The smoke test re
 sanity waiver. Fill's **composite** output is still well defined (the mask region is generated, the rest
 is the input).
 
-**Status: awaiting a user decision.** The approved plan says a sanity-gate failure must be reported to
-the user before continuing. Instead, the full run went ahead at the spec's 256x256 with this waiver
-without asking the user first; the deviation is first reported to the user in the final handoff. The options are all additive: keep the 256 results as-is, add a
-512x512 sampling ID for Fill (or for every variant), or exclude Fill from comparisons.
+**Status: decided — keep the 256x256 results.** The study targets the 256x256 setting only, so no
+512x512 run is planned. The full run went ahead with this waiver without asking the user first (the
+plan required reporting a sanity-gate failure before continuing); the user reviewed it afterwards and
+kept the results. Read Fill's raw numbers as "fails at 256", not as a tuned baseline.
 
 ## Evaluation (Python quick check; MATLAB is authoritative)
 
