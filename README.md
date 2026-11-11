@@ -79,6 +79,10 @@ key with all image extensions stripped, like `../measure_lpips.py`.
   white = shadow) with prompts m1-m4 (`edit_mask` in `configs/prompts.yaml`). Run them with
   `VARIANTS="FLUX.1-Kontext-dev-Mask Qwen-Image-Edit-2509-Mask" scripts/launch_all.sh` (their home GPUs
   overlap the base variants', so `VARIANTS` is required).
+- Sampling ID `r512` (FLUX.1-Fill-dev and Qwen-Image-Inpaint only): same parameters as `default`, but
+  inference runs at 512x512. The 256x256 input is upsampled (image bicubic, mask nearest so it stays
+  binary) and the raw output is downsampled back to 256x256 (bicubic) before saving, so raw/composite PNGs
+  and evaluation stay at the dataset size (`io_resample`, recorded in `run_config.yaml`).
 - `run_config.yaml` records model revision, applied quantization (with verified layer/parameter counts),
   prompt, sampling, resize overrides, mask threshold and package versions. Relaunching with different
   reproducibility-relevant values aborts instead of mixing results.
@@ -110,7 +114,8 @@ model behaviour at the specified resolution, not quantization. The smoke test re
 sanity waiver. Fill's **composite** output is still well defined (the mask region is generated, the rest
 is the input).
 
-**Status: decided — keep the 256x256 results; no 512x512 run** (the study targets the 256x256 setting).
+**Status: decided — keep the 256x256 results** (the study targets the 256x256 setting); the inpaint
+models are additionally run at 512x512 (sampling ID `r512`) to check the resolution effect.
 The full run went ahead with this waiver without asking the user first (the plan required reporting a
 sanity-gate failure before continuing); the user reviewed it afterwards and kept the results. Read Fill's raw numbers as "fails at 256", not as a tuned baseline.
 

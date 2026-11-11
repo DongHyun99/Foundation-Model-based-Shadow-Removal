@@ -5,6 +5,8 @@ from pathlib import Path
 
 import yaml
 
+from fmsr.imageio import RESAMPLE
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 KINDS = ("inpaint", "edit", "edit_mask")
 CONFIG_DIR = REPO_ROOT / "configs"
@@ -72,8 +74,9 @@ class Sampling:
     id: str
     seed: int
     generator_device: str
-    resolution: tuple  # (height, width)
+    resolution: tuple  # (height, width) of model inference
     per_variant: dict
+    io_resample: dict | None = None  # {image_up, mask_up, output_down} when inference size != dataset size
 
     def params(self, variant_name):
         """Sampling params for one variant with `from_resolution` placeholders resolved."""
@@ -90,12 +93,22 @@ def load_sampling(path=CONFIG_DIR / "sampling.yaml"):
         h, w = s["resolution"]
         if h % 16 or w % 16:
             raise ValueError(f"sampling {sid}: resolution must be a multiple of 16, got {h}x{w}")
+        io_resample = s.get("io_resample")
+        if io_resample is not None:
+            if set(io_resample) != {"image_up", "mask_up", "output_down"}:
+                raise ValueError(f"sampling {sid}: io_resample needs exactly image_up, mask_up, output_down")
+            if io_resample["mask_up"] != "nearest":
+                raise ValueError(f"sampling {sid}: mask_up must be nearest to keep the mask binary")
+            bad = {v for v in io_resample.values() if v not in RESAMPLE}
+            if bad:
+                raise ValueError(f"sampling {sid}: unknown resample filter(s) {sorted(bad)}")
         out[sid] = Sampling(
             id=sid,
             seed=int(s["seed"]),
             generator_device=s["generator_device"],
             resolution=(int(h), int(w)),
             per_variant=s["per_variant"],
+            io_resample=io_resample,
         )
     return out
 

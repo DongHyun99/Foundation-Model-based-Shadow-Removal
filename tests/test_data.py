@@ -43,10 +43,16 @@ def test_configs_load_and_match_dataset_counts():
     assert [r.prompt_id for r in cfg.runs("Qwen-Image-Edit-2509-Mask")] == ["m1", "m2", "m3", "m4"]
     assert {r.sampling.id for r in cfg.runs("FLUX.1-Kontext-dev-Mask")} == {"default"}
     assert cfg.prompts["inpaint"]["i0"] == ""
-    assert len(cfg.runs("FLUX.1-Fill-dev")) == 4
-    assert [r.prompt_id for r in cfg.runs("Qwen-Image-Edit-2509")] == ["e1", "e2", "e3", "e4"]
+    assert len(cfg.runs("FLUX.1-Fill-dev")) == 4 * len(cfg.samplings)
+    assert [r.prompt_id for r in cfg.runs("Qwen-Image-Edit-2509", sampling_ids=["default"])] == ["e1", "e2", "e3", "e4"]
     assert cfg.samplings["default"].params("Qwen-Image-Edit-2509")["vae_image_area"] == 256 * 256
     assert cfg.samplings["default"].params("FLUX.1-Kontext-dev")["max_area"] == 256 * 256
+    assert cfg.samplings["default"].io_resample is None
+    r512 = cfg.samplings["r512"]
+    assert r512.resolution == (512, 512) and r512.io_resample["mask_up"] == "nearest"
+    assert len(cfg.runs("FLUX.1-Fill-dev", sampling_ids=["r512"])) == 4
+    assert len(cfg.runs("Qwen-Image-Inpaint", sampling_ids=["r512"])) == 4
+    assert cfg.runs("FLUX.1-Kontext-dev", sampling_ids=["r512"]) == []
     for test, n in cfg.datasets.tests.items():
         for part in ("shadow", "mask", "gt"):
             assert len(list_images(cfg.datasets.dir(test, part))) == n, (test, part)
