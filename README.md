@@ -149,6 +149,18 @@ including raw outputs, SSIM, MAE and LPIPS, are in `results/metrics_summary.csv`
 | FLUX.1-Kontext-dev-Mask | e1: 5.89 / 21.77 / 2.94, 24.75 dB | e1: 11.28 / 25.73 / 5.25, 20.83 dB | e4: 19.24 / 28.18 / 16.34, 17.19 dB |
 | Qwen-Image-Edit-2509-Mask | m4: 10.04 / 45.38 / 2.94, 19.86 dB | m4: 15.70 / 43.60 / 5.25, 17.51 dB | m2: 20.30 / 30.57 / 16.34, 16.92 dB |
 
+LPIPS alex / vgg (lower is better) for the same composite rows:
+
+| Variant | AISTD | SRD | WSRD |
+|---|---|---|---|
+| Input (shadow image) | 0.143 / 0.112 | 0.195 / 0.175 | 0.163 / 0.178 |
+| FLUX.1-Fill-dev (i1) | 0.198 / 0.178 | 0.328 / 0.289 | 0.377 / 0.364 |
+| FLUX.1-Kontext-dev (e1) | 0.087 / 0.100 | 0.154 / 0.173 | 0.154 / 0.189 |
+| Qwen-Image-Inpaint (i2) | 0.182 / 0.175 | 0.284 / 0.279 | 0.255 / 0.299 |
+| Qwen-Image-Edit-2509 (e1; WSRD e2) | 0.153 / 0.139 | 0.254 / 0.244 | 0.225 / 0.266 |
+| FLUX.1-Kontext-dev-Mask (e1; WSRD e4) | 0.116 / 0.113 | 0.169 / 0.176 | 0.158 / 0.185 |
+| Qwen-Image-Edit-2509-Mask (m4; WSRD m2) | 0.187 / 0.154 | 0.255 / 0.227 | 0.179 / 0.202 |
+
 NS is identical to the input for composites by construction. On WSRD (large, irregular masks) only
 Kontext matches or beats the input. Every variant generated exactly 4,132 images with no pipeline
 errors (no `.failed` tasks). Mean time per image on an A5000 at 256x256: Kontext 9.7 s, Fill 15.6 s,
